@@ -1,0 +1,122 @@
+@import "../theme-variables.scss";
+$sidebar-width: 250px;
+$navbar-height: 50px;
+*,
+*:before,
+*:after {
+  -webkit-border-sizing: border-box;
+  -moz-border-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: linear-gradient(0deg, rgba(96, 42, 115, 0.05), rgba(96, 42, 115, 0.05)), #ffffff;
+  font-family: "Open Sans", sans-serif !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  color: $black;
+  height: 100%;
+  width: 100%;
+}
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.wrapper {
+  @include clearfix();
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+[tabindex="-1"]:focus {
+  outline: 0 !important;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.content-wrapper,
+.main-footer {
+  height: 40px;
+  transition: $transition-speed $transition-fn, margin $transition-speed $transition-fn;
+  margin-left: $sidebar-width;
+  z-index: 820;
+  @media (max-width: $screen-xs-max) {
+    margin-left: 0;
+  }
+  .sidebar-collapse & {
+    @media (min-width: $screen-sm-min) {
+      margin-left: 0;
+    }
+  }
+  .sidebar-open & {
+    @media (max-width: $screen-xs-max) {
+      transform: translate($sidebar-width, 0);
+    }
+  }
+}
+
+.content-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(0deg, rgba(96, 42, 115, 0.05), rgba(96, 42, 115, 0.05)), #ffffff;
+  z-index: 800;
+  overflow-y: auto;
+}
+
+.fixed {
+  .main-header,
+  .main-sidebar,
+  .left-side {
+    position: fixed;
+  }
+  .main-header {
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  .content-wrapper,
+  .right-side {
+    padding-top: 50px;
+    @media (max-width: $screen-sm-min) {
+      padding-top: 100px;
+    }
+  }
+  .wrapper {
+    overflow: hidden;
+  }
+}
+
+.hold-transition {
+  .content-wrapper,
+  .right-side,
+  .main-footer,
+  .main-sidebar,
+  .left-side,
+  .main-header .navbar,
+  .main-header .logo,
+  .menu-open {
+    transition: none;
+  }
+}
+.container-fluid {
+  padding: 32px !important;
+  @media (max-width: $screen-xs-max) {
+    padding: 16px !important;
+  }
+}

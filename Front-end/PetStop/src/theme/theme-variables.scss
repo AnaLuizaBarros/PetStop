@@ -1,0 +1,99 @@
+/*
+ * Application global variables.
+ */
+
+// ---------------------------------------------------------------------------
+// Bootstrap variables
+//
+// Override Bootstrap variables here to suite your theme.
+// Copy variables you want to customize from node_modules/bootstrap/scss/_variables.scss
+
+//
+// Media Querys
+//
+//MEDIA QUERIES
+$screen-xs-min: 420px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+$screen-xs-max: 767px;
+$screen-sm-max: 991px;
+$screen-md-max: 1199px;
+
+//
+// Color system
+//
+
+$black: #000000;
+$darkgrey: #333333;
+$darkgrey2: #525252;
+$midgrey: #666666;
+$midgrey2: #959595;
+$midgrey3: #c4c4c4;
+$lightgrey: #d4d4d4;
+$backgroundgrey: #eaeaea;
+$backgroundgrey2: #f6f6f6;
+$backgroundgrey3: #fafafa;
+$white: #ffffff;
+
+$info: #3fa2f7;
+$info1: #c4e4ff;
+$info2: #8bcaff;
+$info3: #349bf3;
+$info4: #0077dc;
+$green: #56c568;
+$green1: #caf7d1;
+$green2: #97eca4;
+$green3: #76d585;
+$green4: #42c157;
+$red: #eb5757;
+$red1: #f7cdcd;
+$red2: #fb9999;
+$red3: #f56363;
+$red4: #ed4848;
+$yellow: #ffc400;
+$yellow1: #fdeebe;
+$yellow2: #ffe17f;
+$yellow3: #ffd139;
+$yellow4: #ffb800;
+
+$purple: #602a73;
+$purple1: #885f96;
+$purple2: #744585;
+$purple3: #542565;
+$purple4: #482056;
+$blue: #4a3bff;
+$blue1: #b7b3ff;
+$blue2: #7769ff;
+$blue3: #3829df;
+$blue4: #281abf;
+$darkblue: #4138a6;
+$darkblue1: #bcb8f0;
+$darkblue2: #7971d2;
+$darkblue3: #342b97;
+$darkblue4: #282087;
+$gold: #f8a306;
+$gold1: #ffebb3;
+$gold2: #ffcb59;
+$gold3: #df9300;
+$gold4: #bf8100;
+
+$facebook: #3b5998;
+$linkedin: #0077b5;
+$twitter: #1da1f2;
+$gmail: #ff6550;
+
+$gradient: linear-gradient(90deg, #885f96 0%, #602a73 100%);
+$lightgradient: linear-gradient(90deg, #744585 0%, #542565 100%);
+$darkgradient: linear-gradient(90deg, #602a73 0%, #482056 100%);
+
+$transition-speed: 0.3s;
+$transition-fn: ease-in-out;
+
+@import "./mixins.scss";
+
+// Use Bootstrap defaults for other variables; imported here so we can access all app variables in one place when used
+// in components.
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
