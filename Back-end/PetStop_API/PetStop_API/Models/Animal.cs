@@ -7,6 +7,8 @@ namespace PetStop_API.Models
 {
     public class Animal
     {
+        public Animal() { }
+
         public string Nome { get; set; }
         public string DataNascimento { get; set; }
         public string Email { get; set; }
@@ -15,16 +17,17 @@ namespace PetStop_API.Models
         public string Bairro { get; set; }
         public string Complemento { get; set; }
         public string Cidade { get; set; }
-        public Animal(string Nome, string Data_Nascimento, string Email, string Cep, string Endereco, string Bairro, string Complemento, string Cidade) 
+
+        public Animal(string nome, string dtNascimento, string email, string cep, string endereco, string bairro, string complemento, string cidade)
         {
-            this.Nome = Nome;
-            this.DataNascimento = Data_Nascimento;
-            this.Email = Email;
-            this.Bairro = Bairro;
-            this.Cep = Cep;
-            this.Endereco = Endereco;
-            this.Complemento = Complemento;
-            this.Cidade = Cidade;
+            this.Nome = nome;
+            this.DataNascimento = dtNascimento;
+            this.Email = email;
+            this.Bairro = bairro;
+            this.Cep = cep;
+            this.Endereco = endereco;
+            this.Complemento = complemento;
+            this.Cidade = cidade;
         }
     }
 }

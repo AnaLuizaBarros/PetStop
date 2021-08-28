@@ -1,0 +1,1 @@
+Instalar via nuget Swashbuckle.examples (caso dê erro ao se exibir exemplos no swagger)

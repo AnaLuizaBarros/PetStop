@@ -12,24 +12,6 @@ namespace PetStop_API.Controllers
     [Route("/api/animal")]
     public class AnimalController : ControllerBase
     {
-        /// <summary>
-        /// Cadastrar um Pet
-        /// </summary>
-        /// <remarks>
-        /// Requisição de exemplo:
-        /// {
-        ///     "Nome": "Snoop",
-        ///     "Data Nascimento": "01-01-2000",
-        ///     "Email": "dono@gmail.com",
-        ///     "CEP": "12345678",
-        ///     "Endereco": "Rua Primeiro de Janeiro",
-        ///     "Cidade": "Belo Horizonte",
-        ///     "Bairro": "Centro",
-        ///     "Complemento": "Casa"
-        /// }
-        /// </remarks>
-        /// <param name="model">Dados de um novo Pet</param>
-        /// <returns>Objeto recém criado</returns>
         /// <response code="201">Pet cadastrado com sucesso</response>
         /// <response code="400">Informação inválida</response>
         [HttpPost]
@@ -39,10 +21,38 @@ namespace PetStop_API.Controllers
         {
             Animal pet = new Animal(animal.Nome, animal.DataNascimento, animal.Email, animal.Cep, animal.Endereco, animal.Bairro, animal.Complemento, animal.Cidade);
 
-            //_dbContext.Carros.Add(carro);
-            //_dbContext.SaveChanges();
+            //Implementar salavr no banco
 
             return Created("OK", pet);
+
+        }
+
+
+        //api/pessoa/1...
+        /// <summary>
+        /// Pesquisar um carro por seu identificador
+        /// </summary>
+        /// <remarks>
+        /// Requisição de exemplo:
+        /// { 
+        ///     Id = 1 
+        /// }
+        /// </remarks>
+        /// <param name="id">Dados de um Pet</param>
+        /// <returns>Objeto retornado com sucesso</returns>
+        /// <response code="200">Objeto retornado com sucesso</response>
+        /// /// <response code="400">Aconteceu um erro...</response>
+        /// <response code="404">Objeto não encontrado</response>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetPet()
+        {
+            //Implementar busca do animal
+
+            return Ok("ok");
+
         }
     }
 }
