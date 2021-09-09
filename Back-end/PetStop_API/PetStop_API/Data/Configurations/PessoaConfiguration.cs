@@ -5,9 +5,9 @@ using System;
 
 namespace PetStop_API.Data.Configurations
 {
-    public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
+    public class PessoaConfiguration : IEntityTypeConfiguration<Adotante>
     {
-        public void Configure(EntityTypeBuilder<Pessoa> builder)
+        public void Configure(EntityTypeBuilder<Adotante> builder)
         {
             throw new NotImplementedException();
         }

@@ -19,12 +19,18 @@ namespace PetStop_API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post([FromBody] Animal animal)
         {
-            Animal pet = new Animal(animal.Nome, animal.DataNascimento, animal.Email, animal.Cep, animal.Endereco, animal.Bairro, animal.Complemento, animal.Cidade);
+            try
+            {
+                using var db = new Data.ApplicationContext();
 
-            //Implementar salavr no banco
+                Animal pet = new Animal(animal.Id_Animal, animal.Nome, animal.Especie, animal.Pessoa);
 
-            return Created("OK", pet);
+                //Inserindo animal na base
+                db.Set<Animal>().Add(pet);
 
+                return Created("OK", pet);
+            }
+            catch { return BadRequest(); }
         }
 
 
@@ -47,11 +53,20 @@ namespace PetStop_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetPet()
+        public IActionResult GetPet([FromBody] Animal animal)
         {
-            //Implementar busca do animal
+            try
+            {
+                //Verificar se a busca se dará por algum parâmetro específico.
 
-            return Ok("ok");
+                //Implementar busca do animal
+                using var db = new Data.ApplicationContext();
+
+                var resultado = db.Animal.Where(p => p.Nome == animal.Nome).ToList();
+
+                return Ok(resultado);
+            }
+            catch { return BadRequest(); }
 
         }
     }
