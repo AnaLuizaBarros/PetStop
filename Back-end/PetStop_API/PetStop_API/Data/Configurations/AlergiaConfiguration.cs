@@ -15,3 +15,4 @@ namespace PetStop_API.Data.Configurations
             throw new NotImplementedException();
         }
     }
+}
