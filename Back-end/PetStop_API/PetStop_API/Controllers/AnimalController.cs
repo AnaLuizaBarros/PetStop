@@ -17,7 +17,7 @@ namespace PetStop_API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post([FromBody] Animal animal)
+        public IActionResult PostSalvarAnimal([FromBody] Animal animal)
         {
             try
             {
@@ -27,16 +27,15 @@ namespace PetStop_API.Controllers
 
                 //Inserindo animal na base
                 db.Set<Animal>().Add(pet);
+                db.SaveChanges();
 
                 return Created("OK", pet);
             }
             catch { return BadRequest(); }
         }
 
-
-        //api/pessoa/1...
         /// <summary>
-        /// Pesquisar um carro por seu identificador
+        /// Pesquisar um Pet por seu Nome
         /// </summary>
         /// <remarks>
         /// Requisição de exemplo:
@@ -44,7 +43,7 @@ namespace PetStop_API.Controllers
         ///     Id = 1 
         /// }
         /// </remarks>
-        /// <param name="id">Dados de um Pet</param>
+        /// <param name="string">Dados de um Pet</param>
         /// <returns>Objeto retornado com sucesso</returns>
         /// <response code="200">Objeto retornado com sucesso</response>
         /// /// <response code="400">Aconteceu um erro...</response>
@@ -53,7 +52,7 @@ namespace PetStop_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetPet([FromBody] Animal animal)
+        public IActionResult GetPet(string nome)
         {
             try
             {
@@ -62,12 +61,34 @@ namespace PetStop_API.Controllers
                 //Implementar busca do animal
                 using var db = new Data.ApplicationContext();
 
-                var resultado = db.Animal.Where(p => p.Nome == animal.Nome).ToList();
+                var resultado = db.Animal.Where(p => p.Nome == nome).Take(1).ToList();
 
-                return Ok(resultado);
+                if (resultado is not null) { return Ok(resultado); }
+                else { return NotFound(); }
             }
             catch { return BadRequest(); }
 
         }
+
+
+        [HttpGet("{idEspecie}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetListaPorEspecie(int idEspecie)
+        {
+            try
+            {
+                using var db = new Data.ApplicationContext();
+
+                List<Animal> resultado = db.Animal.Select(p => new Animal(p.Id_Animal, p.Nome, p.Especie, p.Pessoa)).ToList();
+                resultado = resultado.FindAll(p => p.Especie.Id_Especie == idEspecie);
+
+                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
+                else { return NotFound(); }
+            }
+            catch { return BadRequest(); }
+        }
+
     }
 }
