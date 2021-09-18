@@ -1,0 +1,35 @@
+@mixin bs-light {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+.bs-light {
+  @include bs-light;
+}
+@mixin bs-medium {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+}
+.bs-medium {
+  @include bs-medium;
+}
+@mixin bs-heavy {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+.bs-heavy {
+  @include bs-heavy;
+}
+@mixin ts-light {
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+@mixin ts-medium {
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+}
+@mixin ts-heavy {
+  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}

@@ -1,0 +1,17 @@
+@import "src/theme/theme-variables.scss";
+
+section {
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
+  img {
+    //  width: 240px;
+    height: 405px;
+  }
+  h1 {
+    font-size: 6.5rem;
+  }
+  p {
+    font-size: 1.875rem;
+  }
+}
