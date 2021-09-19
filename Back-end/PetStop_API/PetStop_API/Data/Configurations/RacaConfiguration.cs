@@ -12,7 +12,11 @@ namespace PetStop_API.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Raca> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Raca");
+            builder.HasKey(p => p.Raca_ID);
+            builder.Property(p => p.Descricao_Raca).HasColumnType("VARCHAR(30)").IsRequired();
+
+            builder.HasIndex(i => i.Raca_ID).HasName("idx_id_raca");
         }
     }
 }

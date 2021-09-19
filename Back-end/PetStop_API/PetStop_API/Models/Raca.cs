@@ -7,14 +7,8 @@ namespace PetStop_API.Models
 {
     public class Raca
     {
-        public Raca() { }
-        public Raca(int idRaca, string descricaoRaca)
-        {
-            this.Ir_Raca = idRaca;
-            this.Descricao_Raca = descricaoRaca;
-        }
-
-        public int Ir_Raca { get; set; }
+        public int Raca_ID { get; set; }
+        //public int Raca_ID2 { get; set; }
         public string Descricao_Raca { get; set; }
     }
 }

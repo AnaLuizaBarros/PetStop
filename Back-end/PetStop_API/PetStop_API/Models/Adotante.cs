@@ -7,25 +7,17 @@ namespace PetStop_API.Models
 {
     public class Adotante
     {
-        public Adotante(int idAdotante, string nome, int idade, string cpf, DateTime dt_Nascimento, string email,  Alergia alergia, Endereco endereco)
-        {
-            this.IdAdotante = idAdotante;
-            this.Nome = nome;
-            this.Idade = idade;
-            this.Cpf = cpf;
-            this.Dt_Nascimento = dt_Nascimento;
-            this.Email = email;
-            this.Endereco = endereco;
-            this.Alergia = alergia;
-        }
-
-        public int IdAdotante { get; set; }
+        //public int Adotante_ID { get; set; }
+        public int Adotante_ID { get; set; }
         public string Nome { get; set; }
+        public string Telefone { get; set; }
         public int Idade { get; set; }
         public string Cpf { get; set; }
         public DateTime Dt_Nascimento { get; set; }
-        public string Email { get; set; }
         public Endereco Endereco { get; set; }
-        public Alergia Alergia { get; set; }
+        public string Email { get; set; }
+
+        #nullable enable
+        public List<Alergia> Alergia { get; set; }
     }
 }

@@ -21,28 +21,21 @@ namespace PetStop_API.Controllers
             {
                 using var db = new Data.ApplicationContext();
 
-                Adotante adt = new Adotante(adotante.IdAdotante, adotante.Nome, adotante.Idade, adotante.Cpf, adotante.Dt_Nascimento, adotante.Email, adotante.Alergia, adotante.Endereco);
-
                 //Implementar salvar no banco
-                db.Set<Adotante>().Add(adt);
-                db.SaveChanges();
-                db.Set<Alergia>().Add(adt.Alergia);
-                db.SaveChanges();
-                db.Set<Endereco>().Add(adt.Endereco);
+                db.Set<Adotante>().Add(adotante);
                 db.SaveChanges();
 
-                return Created("OK", adt);
+                return Created("OK", adotante);
             }
-            catch { return BadRequest(); }
+            catch (Exception ex) { return BadRequest(); }
         }
 
-
-       
-        [HttpGet("{Nome}")]
+        [HttpGet]
+        [Route("/api/adotante/BuscarAdotante/{Nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetBuscaAdotante(string Nome)
+        public IActionResult BuscarAdotante(string Nome)
         {
             try
             {
@@ -56,15 +49,16 @@ namespace PetStop_API.Controllers
                 else
                     return NotFound();
             }
-            catch { return BadRequest(); }
+            catch(Exception ex) { return BadRequest(); }
         }
 
         
-        [HttpDelete("{idAdotante}")]
+        [HttpDelete]
+        [Route("/api/adotante/ExcluirAdotante/{idAdotante}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult DeleteAdotante(int idAdotante)
+        public IActionResult ExcluirAdotante(int idAdotante)
         {
             try
             {

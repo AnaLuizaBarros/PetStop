@@ -7,16 +7,8 @@ namespace PetStop_API.Models
 {
     public class Endereco
     {
-        public Endereco(string rua, int? numero, string bairro, string cidade, string cep, string estado, string sigla)
-        {
-            Rua = rua;
-            Numero = numero;
-            Bairro = bairro;
-            Cidade = cidade;
-            Cep = cep;
-            Estado = estado;
-            Sigla = sigla;
-        }
+        //public int Endereco_ID2 { get; set; }
+        public int Endereco_ID { get; set; }
         public string Rua { get; set; }
         public int? Numero { get; set; }
         public string Bairro { get; set; }

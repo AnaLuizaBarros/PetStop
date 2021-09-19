@@ -7,15 +7,11 @@ namespace PetStop_API.Models
 {
     public class Especie
     {
-        public Especie(int id_Especie, string nome, Raca raca)
-        {
-            this.Id_Especie = id_Especie;
-            this.Nome = nome;
-            this.raca = raca;
-        }
-
-        public int Id_Especie { get; set; }
+        public int Especie_ID { get; set; }
+        //public int Especie_ID2 { get; set; }
         public string Nome { get; set; }
-        public Raca raca { get; set; }
+
+        #nullable enable
+        //public Animal Animal { get; set; }
     }
 }
