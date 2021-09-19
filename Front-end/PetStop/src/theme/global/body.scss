@@ -10,7 +10,7 @@ $navbar-height: 50px;
 html,
 body {
   margin: 0;
-  background: linear-gradient(0deg, rgba(96, 42, 115, 0.05), rgba(96, 42, 115, 0.05)), #ffffff;
+  background: $background, #f9edcc;
   font-family: "Open Sans", sans-serif !important;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
@@ -54,7 +54,8 @@ hr {
 .content-wrapper,
 .main-footer {
   height: 40px;
-  transition: $transition-speed $transition-fn, margin $transition-speed $transition-fn;
+  transition: $transition-speed $transition-fn,
+    margin $transition-speed $transition-fn;
   margin-left: $sidebar-width;
   z-index: 820;
   @media (max-width: $screen-xs-max) {
@@ -74,7 +75,12 @@ hr {
 
 .content-wrapper {
   min-height: 100vh;
-  background: linear-gradient(0deg, rgba(96, 42, 115, 0.05), rgba(96, 42, 115, 0.05)), #ffffff;
+  background: linear-gradient(
+      0deg,
+      rgba(96, 42, 115, 0.05),
+      rgba(96, 42, 115, 0.05)
+    ),
+    #ffffff;
   z-index: 800;
   overflow-y: auto;
 }

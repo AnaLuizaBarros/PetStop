@@ -1,7 +1,7 @@
 @import "../theme-variables.scss";
 .skeleton {
   position: relative;
-  background-color: $backgroundgrey;
+  background-color: $background;
   border-radius: 4px;
   @include clearfix();
   &:after {
@@ -10,7 +10,12 @@
     height: 100%;
     top: 0px;
     transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     animation: loading 1.5s infinite;
   }
 }

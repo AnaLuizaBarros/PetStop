@@ -26,58 +26,12 @@ $screen-md-max: 1199px;
 //
 
 $black: #000000;
-$darkgrey: #333333;
-$darkgrey2: #525252;
-$midgrey: #666666;
-$midgrey2: #959595;
-$midgrey3: #c4c4c4;
-$lightgrey: #d4d4d4;
-$backgroundgrey: #eaeaea;
-$backgroundgrey2: #f6f6f6;
-$backgroundgrey3: #fafafa;
 $white: #ffffff;
-
-$info: #3fa2f7;
-$info1: #c4e4ff;
-$info2: #8bcaff;
-$info3: #349bf3;
-$info4: #0077dc;
-$green: #56c568;
-$green1: #caf7d1;
-$green2: #97eca4;
-$green3: #76d585;
-$green4: #42c157;
-$red: #eb5757;
-$red1: #f7cdcd;
-$red2: #fb9999;
-$red3: #f56363;
-$red4: #ed4848;
-$yellow: #ffc400;
-$yellow1: #fdeebe;
-$yellow2: #ffe17f;
-$yellow3: #ffd139;
-$yellow4: #ffb800;
-
-$purple: #602a73;
-$purple1: #885f96;
-$purple2: #744585;
-$purple3: #542565;
-$purple4: #482056;
-$blue: #4a3bff;
-$blue1: #b7b3ff;
-$blue2: #7769ff;
-$blue3: #3829df;
-$blue4: #281abf;
-$darkblue: #4138a6;
-$darkblue1: #bcb8f0;
-$darkblue2: #7971d2;
-$darkblue3: #342b97;
-$darkblue4: #282087;
-$gold: #f8a306;
-$gold1: #ffebb3;
-$gold2: #ffcb59;
-$gold3: #df9300;
-$gold4: #bf8100;
+$background: #f9edcc;
+$red: #ea2b1f;
+$purple: #61210f;
+$orange: #f9df74;
+$orange2: #edae49;
 
 $facebook: #3b5998;
 $linkedin: #0077b5;
@@ -90,10 +44,6 @@ $darkgradient: linear-gradient(90deg, #602a73 0%, #482056 100%);
 
 $transition-speed: 0.3s;
 $transition-fn: ease-in-out;
-
 @import "./mixins.scss";
-
-// Use Bootstrap defaults for other variables; imported here so we can access all app variables in one place when used
-// in components.
 @import "~bootstrap/scss/_functions";
 @import "~bootstrap/scss/_variables";
