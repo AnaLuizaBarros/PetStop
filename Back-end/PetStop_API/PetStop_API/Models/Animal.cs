@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetStop_API.Models
 {
     public class Animal
     {
-        //public int Animal_ID2 { get; set; }
-        public int Animal_ID { get; set; }
-        public string Nome { get; set; }
+        public int id_animal { get; set; }
 
-        #nullable enable
+        [Column(TypeName = "VARCHAR(150)")]
+        public string nome { get; set; }
+
         public Especie Especie { get; set; }
-        public Raca Raca { get; set; }
+
+        [Column(TypeName = "VARCHAR(255)")]
+        public string imagem { get; set; }
+
+        public Doador Doador { get; set; }
+        public Porte Porte { get; set; }
     }
 }

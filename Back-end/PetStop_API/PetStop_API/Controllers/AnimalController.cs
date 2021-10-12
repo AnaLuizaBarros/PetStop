@@ -4,7 +4,6 @@ using PetStop_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetStop_API.Controllers
 {
@@ -12,6 +11,9 @@ namespace PetStop_API.Controllers
     [Route("/api/animal")]
     public class AnimalController : ControllerBase
     {
+        /// <summary>
+        /// Cadastrar Animal
+        /// </summary>
         /// <response code="201">Pet cadastrado com sucesso</response>
         /// <response code="400">Informação inválida</response>
         [HttpPost]
@@ -22,14 +24,14 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
                 db.Set<Animal>().Add(animal);
                 db.SaveChanges();
 
                 return Created("OK", animal);
             }
-            catch(Exception ex) { return BadRequest(); }
+            catch (Exception) { return BadRequest(); }
         }
 
         [HttpGet]
@@ -41,15 +43,14 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
-                var resultado = db.Animal.Where(p => p.Nome == nome).Take(1).ToList();
+                var resultado = db.Animal.Where(p => p.nome == nome).Take(1).ToList();
 
                 if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
                 else { return NotFound(); }
             }
             catch { return BadRequest(); }
-
         }
 
         [HttpGet]
@@ -61,16 +62,15 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
-                List<Animal> resultado = db.Animal.Where(p => p.Especie.Especie_ID > 0).ToList();
-                resultado = resultado.FindAll(p => p.Especie.Especie_ID == idEspecie);
+                List<Animal> resultado = db.Animal.Where(p => p.Especie.id_especie > 0).ToList();
+                resultado = resultado.FindAll(p => p.Especie.id_especie == idEspecie);
 
                 if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
                 else { return NotFound(); }
             }
             catch { return BadRequest(); }
         }
-
     }
 }

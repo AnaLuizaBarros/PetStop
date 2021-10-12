@@ -6,10 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace PetStop_API.Models
 {
-    public class Adotante
+    public class Doador
     {
-        [JsonIgnore]
-        public int id_adotante { get; set; }
+        public int id_doador { get; set; }
 
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
@@ -51,10 +50,7 @@ namespace PetStop_API.Models
         [JsonConverter(typeof(DateTimeJsonConverter))]
         public DateTime dataNascimento { get; set; }
 
-        [JsonIgnore]
-        public List<Alergico> Alergias { get; set; }
-
-        [JsonIgnore]
+        public List<Animal> Animais { get; set; }
         public List<Adocao> Adocoes { get; set; }
     }
 }

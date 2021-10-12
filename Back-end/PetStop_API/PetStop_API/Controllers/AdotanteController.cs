@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetStop_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetStop_API.Controllers
 {
@@ -19,7 +17,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
                 //Implementar salvar no banco
                 db.Set<Adotante>().Add(adotante);
@@ -27,7 +25,7 @@ namespace PetStop_API.Controllers
 
                 return Created("OK", adotante);
             }
-            catch (Exception ex) { return BadRequest(); }
+            catch (Exception) { return BadRequest(); }
         }
 
         [HttpGet]
@@ -40,19 +38,18 @@ namespace PetStop_API.Controllers
             try
             {
                 //Implementar busca do adotante
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
-                var adotante = db.Adotante.Where(p => p.Nome == Nome).Take(1).ToList();
+                var adotante = db.Adotante.Where(p => p.nome == Nome).Take(1).ToList();
 
                 if (adotante is not null && adotante.Count > 0)
                     return Ok(adotante);
                 else
                     return NotFound();
             }
-            catch(Exception ex) { return BadRequest(); }
+            catch (Exception) { return BadRequest(); }
         }
 
-        
         [HttpDelete]
         [Route("/api/adotante/ExcluirAdotante/{idAdotante}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -62,7 +59,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.ApplicationContext();
+                using var db = new Data.PetStopContext();
 
                 var adotante = db.Adotante.Find(idAdotante);
 

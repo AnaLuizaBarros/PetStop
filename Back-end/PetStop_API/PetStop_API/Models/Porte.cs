@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetStop_API.Models
 {
-    public class Alergia
+    public class Porte
     {
-        public int id_alergia { get; set; }
+        public int id_porte { get; set; }
 
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
 
-        public Especie Especie { get; set; }
-        public List<Alergico> Alergicos { get; set; }
+        public List<Animal> Animais { get; set; }
     }
 }
