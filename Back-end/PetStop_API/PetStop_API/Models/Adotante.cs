@@ -8,13 +8,12 @@ namespace PetStop_API.Models
 {
     public class Adotante
     {
-        [JsonIgnore]
         public int id_adotante { get; set; }
 
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
 
-        [Column(TypeName = "VARCHAR(12)")]
+        [Column(TypeName = "VARCHAR(32)")]
         public string senha { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetStop_API.Models;
+using PetStop_API.Util;
 using System;
 using System.Linq;
 
@@ -20,6 +21,7 @@ namespace PetStop_API.Controllers
                 using var db = new Data.PetStopContext();
 
                 //Implementar salvar no banco
+                adotante.senha = Encryption.GerarHashMd5(adotante.senha);
                 db.Set<Adotante>().Add(adotante);
                 db.SaveChanges();
 

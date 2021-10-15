@@ -7,6 +7,7 @@ namespace PetStop_API.Data
     public class PetStopContext : DbContext
     {
         public DbSet<Adotante> Adotante { get; set; }
+        public DbSet<Doador> Doador { get; set; }
         public DbSet<Animal> Animal { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

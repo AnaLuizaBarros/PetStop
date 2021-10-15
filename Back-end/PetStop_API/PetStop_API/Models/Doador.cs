@@ -13,7 +13,7 @@ namespace PetStop_API.Models
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
 
-        [Column(TypeName = "VARCHAR(12)")]
+        [Column(TypeName = "VARCHAR(32)")]
         public string senha { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]
