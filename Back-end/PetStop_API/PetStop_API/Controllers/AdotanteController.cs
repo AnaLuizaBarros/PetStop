@@ -77,5 +77,33 @@ namespace PetStop_API.Controllers
             }
             catch { return BadRequest(); }
         }
+         
+        [HttpPost]
+        [Route("/api/adotante/AdotarAnimal/")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult AdotarAnimal(int id_animal, int id_adotante, int id_doador)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+
+                Animal animal = (Animal)db.Animal.Where(p => p.id_animal == id_animal);
+                Adotante adotante = (Adotante)db.Adotante.Where(p => p.id_adotante == id_adotante);
+                Doador doador = (Doador)db.Doador.Where(p => p.id_doador == id_doador);
+
+                Adocao adocao = new Adocao();
+                adocao.dataAdocao = DateTime.Now;
+                adocao.Adotante = adotante;
+                adocao.Animal = animal;
+                adocao.Doador = doador;
+
+                db.Set<Adocao>().Add(adocao);
+                db.SaveChanges();
+
+                return Created("OK", adocao);
+            }
+            catch (Exception) { return BadRequest(); }
+        }
     }
 }

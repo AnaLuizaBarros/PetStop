@@ -9,6 +9,7 @@ namespace PetStop_API.Data
         public DbSet<Adotante> Adotante { get; set; }
         public DbSet<Doador> Doador { get; set; }
         public DbSet<Animal> Animal { get; set; }
+        public DbSet<Adocao> Adocao { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

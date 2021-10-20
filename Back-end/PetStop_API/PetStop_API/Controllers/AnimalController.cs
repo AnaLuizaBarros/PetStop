@@ -11,11 +11,6 @@ namespace PetStop_API.Controllers
     [Route("/api/animal")]
     public class AnimalController : ControllerBase
     {
-        /// <summary>
-        /// Cadastrar Animal
-        /// </summary>
-        /// <response code="201">Pet cadastrado com sucesso</response>
-        /// <response code="400">Informação inválida</response>
         [HttpPost]
         [Route("/api/animal/CadastrarAnimal")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -66,6 +61,25 @@ namespace PetStop_API.Controllers
 
                 List<Animal> resultado = db.Animal.Where(p => p.Especie.id_especie > 0).ToList();
                 resultado = resultado.FindAll(p => p.Especie.id_especie == idEspecie);
+
+                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
+                else { return NotFound(); }
+            }
+            catch { return BadRequest(); }
+        }
+
+        [HttpGet]
+        [Route("/api/animal/ListarAnimais")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult ListarTodosAnimais()
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();   
+
+                List<Animal> resultado = db.Animal.Where(p => p.id_animal > 0).ToList();
 
                 if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
                 else { return NotFound(); }
