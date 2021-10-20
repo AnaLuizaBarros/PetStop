@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetStop_API.Models
 {
     [NotMapped]
     public class Login
     {
+        [Required]
         public int tipo { get; set; }
+
+        [Required]
         public string email { get; set; }
+
+        [Required]
         public string senha { get; set; }
     }
 }

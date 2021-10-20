@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PetStop_API.Models;
 using PetStop_API.Util;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetStop_API.Controllers
 {
@@ -22,7 +20,6 @@ namespace PetStop_API.Controllers
             {
                 using var db = new Data.PetStopContext();
 
-                doador.senha = Encryption.GerarHashMd5(doador.senha);
                 db.Set<Doador>().Add(doador);
                 db.SaveChanges();
 

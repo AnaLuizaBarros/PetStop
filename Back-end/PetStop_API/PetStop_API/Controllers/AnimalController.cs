@@ -77,7 +77,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();   
+                using var db = new Data.PetStopContext();
 
                 List<Animal> resultado = db.Animal.Where(p => p.id_animal > 0).ToList();
 

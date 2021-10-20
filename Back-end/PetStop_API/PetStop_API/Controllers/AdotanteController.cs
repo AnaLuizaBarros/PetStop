@@ -20,8 +20,6 @@ namespace PetStop_API.Controllers
             {
                 using var db = new Data.PetStopContext();
 
-                //Implementar salvar no banco
-                adotante.senha = Encryption.GerarHashMd5(adotante.senha);
                 db.Set<Adotante>().Add(adotante);
                 db.SaveChanges();
 
@@ -77,7 +75,7 @@ namespace PetStop_API.Controllers
             }
             catch { return BadRequest(); }
         }
-         
+
         [HttpPost]
         [Route("/api/adotante/AdotarAnimal/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
