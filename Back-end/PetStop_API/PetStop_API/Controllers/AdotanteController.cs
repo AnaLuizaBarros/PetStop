@@ -90,16 +90,21 @@ namespace PetStop_API.Controllers
                 Adotante adotante = (Adotante)db.Adotante.Where(p => p.id_adotante == id_adotante);
                 Doador doador = (Doador)db.Doador.Where(p => p.id_doador == id_doador);
 
-                Adocao adocao = new Adocao();
-                adocao.dataAdocao = DateTime.Now;
-                adocao.Adotante = adotante;
-                adocao.Animal = animal;
-                adocao.Doador = doador;
+                if(animal.id_animal > 0 && adotante.id_adotante > 0 && doador.id_doador > 0)
+                {
+                    Adocao adocao = new Adocao();
+                    adocao.dataAdocao = DateTime.Now;
+                    adocao.Adotante = adotante;
+                    adocao.Animal = animal;
+                    adocao.Doador = doador;
 
-                db.Set<Adocao>().Add(adocao);
-                db.SaveChanges();
+                    db.Set<Adocao>().Add(adocao);
+                    db.SaveChanges();
 
-                return Created("OK", adocao);
+                    return Created("OK", adocao);
+                }
+                else
+                    return BadRequest();
             }
             catch (Exception) { return BadRequest(); }
         }
