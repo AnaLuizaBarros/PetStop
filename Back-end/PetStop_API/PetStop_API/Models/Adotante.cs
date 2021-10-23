@@ -25,11 +25,11 @@ namespace PetStop_API.Models
         public string email { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR(14)")]
+        [Column(TypeName = "VARCHAR(11)")]
         public string cpf { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR(14)")]
+        [Column(TypeName = "VARCHAR(11)")]
         public string telefone { get; set; }
 
         [Required]
@@ -52,7 +52,7 @@ namespace PetStop_API.Models
         public string cidade { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR(10)")]
+        [Column(TypeName = "VARCHAR(8)")]
         public string cep { get; set; }
 
         [Required]
