@@ -11,8 +11,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
   registration(type: string) {
+    console.log(type);
     this.router.navigate(['cadastro'], {
-      queryParams: { CadastroType: type },
       replaceUrl: true,
     });
   }

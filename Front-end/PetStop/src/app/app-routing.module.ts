@@ -3,8 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'cadastro',
+    loadChildren: () =>
+      import('./cadastro/cadastro.module').then((m) => m.CadastroModule),
+  },
+  {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full',
     runGuardsAndResolvers: 'always',
   },
