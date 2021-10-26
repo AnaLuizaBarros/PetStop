@@ -3,6 +3,9 @@
  * Framework overrides and customization goes here.
  */
 
+@import "./global/body.scss";
 @import "./global/skeleton.scss";
 
+//Componentes
 @import "./components/buttons.scss";
+@import "./components/modal.scss";

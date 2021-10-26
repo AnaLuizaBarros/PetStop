@@ -2,17 +2,26 @@ import { CadastroModule } from './cadastro/cadastro.module';
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModule } from './login/login.module';
+import { SideBarModule } from './pages/side-bar/side-bar.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
-  imports: [BrowserModule, AppRoutingModule, HomeModule, CadastroModule, ReactiveFormsModule],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HomeModule,
+    CadastroModule,
+    LoginModule,
+    SideBarModule,
+    NgbModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [ReactiveFormsModule]
 })
 export class AppModule {}
