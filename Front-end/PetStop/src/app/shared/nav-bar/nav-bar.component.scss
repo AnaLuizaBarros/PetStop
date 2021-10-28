@@ -1,3 +1,4 @@
+@import "src/theme/theme-variables.scss";
 section {
   padding: 1em;
   display: flex;
@@ -5,9 +6,11 @@ section {
   img {
     margin-left: 1em;
   }
-  p {
+  a {
     margin: 1.5em 1em;
     font-weight: bold;
     font-size: 1.45rem;
+    text-decoration: none;
+    color: $black;
   }
 }

@@ -1,0 +1,30 @@
+@import "src/theme/theme-variables.scss";
+.page-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  .side-bar {
+    width: 380px;
+    background-color: $white;
+    .user-avatar,
+    .user-buttons {
+      margin-left: 5em;
+    }
+    .avatars {
+      display: inline-flex;
+      flex-direction: row-reverse;
+    }
+
+    .avatar,
+    .avatar-img {
+      height: 80px;
+      width: 80px;
+      background-color: $white;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .user-name {
+      display: block;
+    }
+  }
+}
