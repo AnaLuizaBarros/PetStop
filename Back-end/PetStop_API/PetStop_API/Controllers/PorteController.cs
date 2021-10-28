@@ -11,7 +11,7 @@ namespace PetStop_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult BuscarTodasRacasPorEspecie(int id_especie)
+        public IActionResult BuscarTodasRacasPorEspecie()
         {
             try
             {
