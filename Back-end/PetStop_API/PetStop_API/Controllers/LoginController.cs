@@ -24,7 +24,7 @@ namespace PetStop_API.Controllers
                 if (usuario.Count > 0)
                     return Ok(usuario[0]);
                 else
-                    return NotFound();
+                    return Ok(new object());
             }
             catch (Exception) { return BadRequest(); }
         }

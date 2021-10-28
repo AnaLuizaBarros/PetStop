@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetStop_API.Models;
-using PetStop_API.Util;
 using System;
 using System.Linq;
 
@@ -80,23 +79,25 @@ namespace PetStop_API.Controllers
         [Route("/api/adotante/AdotarAnimal/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult AdotarAnimal(int id_animal, int id_adotante, int id_doador)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult AdotarAnimal([FromForm] int id_animal, [FromForm] int id_adotante, [FromForm] int id_doador)
         {
             try
             {
                 using var db = new Data.PetStopContext();
+                Animal animal = db.Animal.FirstOrDefault(p => p.id_animal == id_animal);
+                Adotante adotante = db.Adotante.FirstOrDefault(p => p.id_adotante == id_adotante);
+                Doador doador = db.Doador.FirstOrDefault(p => p.id_doador == id_doador);
 
-                Animal animal = (Animal)db.Animal.Where(p => p.id_animal == id_animal);
-                Adotante adotante = (Adotante)db.Adotante.Where(p => p.id_adotante == id_adotante);
-                Doador doador = (Doador)db.Doador.Where(p => p.id_doador == id_doador);
-
-                if(animal.id_animal > 0 && adotante.id_adotante > 0 && doador.id_doador > 0)
+                if (animal != null && adotante != null && doador != null)
                 {
-                    Adocao adocao = new Adocao();
-                    adocao.dataAdocao = DateTime.Now;
-                    adocao.Adotante = adotante;
-                    adocao.Animal = animal;
-                    adocao.Doador = doador;
+                    Adocao adocao = new()
+                    {
+                        dataAdocao = DateTime.Now,
+                        Adotante = adotante,
+                        Animal = animal,
+                        Doador = doador
+                    };
 
                     db.Set<Adocao>().Add(adocao);
                     db.SaveChanges();
@@ -104,7 +105,7 @@ namespace PetStop_API.Controllers
                     return Created("OK", adocao);
                 }
                 else
-                    return BadRequest();
+                    return Problem(detail: "Algum(ns) objetos não foram encontrados!", statusCode: 400);
             }
             catch (Exception) { return BadRequest(); }
         }

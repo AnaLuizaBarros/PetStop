@@ -13,6 +13,9 @@ namespace PetStop_API.Models
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
 
+        [Required]
+        public int id_especie { get; set; }
+
         [JsonIgnore]
         public Especie Especie { get; set; }
 

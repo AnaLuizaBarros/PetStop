@@ -9,8 +9,8 @@ namespace PetStop_API.Data.Configuration
         public void Configure(EntityTypeBuilder<Adocao> builder)
         {
             builder.HasKey(x => x.id_adocao);
-            builder.HasOne(x => x.Doador).WithMany(x => x.Adocoes).HasForeignKey("id_doador");
-            builder.HasOne(x => x.Adotante).WithMany(x => x.Adocoes).HasForeignKey("id_adotante");
+            builder.HasOne(x => x.Doador).WithMany(x => x.Adocoes).HasForeignKey(x => x.id_doador);
+            builder.HasOne(x => x.Adotante).WithMany(x => x.Adocoes).HasForeignKey(x => x.id_adotante);
         }
     }
 }

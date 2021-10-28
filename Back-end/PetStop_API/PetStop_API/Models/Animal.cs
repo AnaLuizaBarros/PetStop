@@ -12,14 +12,23 @@ namespace PetStop_API.Models
         [Column(TypeName = "VARCHAR(150)")]
         public string nome { get; set; }
 
+        [Required]
+        public int id_especie { get; set; }
+
         [JsonIgnore]
         public Especie Especie { get; set; }
 
         [Column(TypeName = "VARCHAR(255)")]
         public string imagem { get; set; }
 
+        [Required]
+        public int id_doador { get; set; }
+
         [JsonIgnore]
         public Doador Doador { get; set; }
+
+        [Required]
+        public int id_porte { get; set; }
 
         [JsonIgnore]
         public Porte Porte { get; set; }

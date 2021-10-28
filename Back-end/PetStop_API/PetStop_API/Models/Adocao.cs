@@ -15,13 +15,23 @@ namespace PetStop_API.Models
         [JsonConverter(typeof(DateTimeJsonConverter))]
         public DateTime dataAdocao { get; set; }
 
+        [Required]
+        public int id_doador { get; set; }
+
         [JsonIgnore]
         public Doador Doador { get; set; }
+
+        [Required]
+        public int id_adotante { get; set; }
 
         [JsonIgnore]
         public Adotante Adotante { get; set; }
 
-        [ForeignKey("id_animal")] //deixa isso aqui
+        [Required]
+        [NotMapped]
+        public int id_animal { get; set; }
+
+        [ForeignKey("id_animal")]
         [JsonIgnore]
         public Animal Animal { get; set; }
     }
