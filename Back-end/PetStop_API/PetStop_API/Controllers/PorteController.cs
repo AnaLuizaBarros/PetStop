@@ -15,12 +15,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Porte.ToList();
-
-                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Porte.ToList());
             }
             catch { return BadRequest(); }
         }
@@ -34,12 +29,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Porte.FirstOrDefault(x => x.id_porte == id);
-
-                if (resultado != null) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Porte.FirstOrDefault(x => x.id_porte == id) ?? new Models.Porte());
             }
             catch { return BadRequest(); }
         }
@@ -53,12 +43,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Porte.FirstOrDefault(x => x.nome == nome);
-
-                if (resultado != null) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Porte.FirstOrDefault(x => x.nome == nome) ?? new Models.Porte());
             }
             catch { return BadRequest(); }
         }

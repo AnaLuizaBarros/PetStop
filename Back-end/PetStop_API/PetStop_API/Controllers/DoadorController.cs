@@ -28,48 +28,43 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/doador/BuscarDoador/{Nome}")]
+        [Route("/api/doador/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult BuscarAdotante(string Nome)
+        public IActionResult BuscarDoador(int id)
         {
             try
             {
-                using var db = new Data.PetStopContext();
+                return Ok(new Data.PetStopContext().Doador.FirstOrDefault(x => x.id_doador == id) ?? new Doador());
+            }
+            catch { return BadRequest(); }
+        }
 
-                var doador = db.Doador.Where(p => p.nome == Nome).Take(1).ToList();
-
-                if (doador is not null && doador.Count > 0)
-                    return Ok(doador);
-                else
-                    return NotFound();
+        [HttpGet]
+        [Route("/api/doador/{Nome}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult BuscarDoador(string Nome)
+        {
+            try
+            {
+                return Ok(new Data.PetStopContext().Doador.FirstOrDefault(x => x.nome == Nome) ?? new Doador());
             }
             catch (Exception) { return BadRequest(); }
         }
 
         [HttpDelete]
-        [Route("/api/doador/ExcluirDoador/{idAdotante}")]
+        [Route("/api/doador/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult ExcluirAdotante(int idAdotante)
+        public IActionResult ExcluirDoador(int id)
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var doador = db.Adotante.Find(idAdotante);
-
-                if (doador is not null)
-                {
-                    db.Adotante.Remove(doador);
-                    db.SaveChanges();
-
-                    return Ok();
-                }
-                else
-                    return NotFound();
+                return Ok(new Data.PetStopContext().Doador.FirstOrDefault(x => x.id_doador == id) ?? new Doador());
             }
             catch { return BadRequest(); }
         }

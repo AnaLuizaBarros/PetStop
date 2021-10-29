@@ -12,7 +12,7 @@ namespace PetStop_API.Controllers
     public class AnimalController : ControllerBase
     {
         [HttpPost]
-        [Route("/api/animal/CadastrarAnimal")]
+        [Route("/api/animal")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CadastrarAnimal([FromBody] Animal animal)
@@ -30,7 +30,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/animal/BuscarAnimalPorNome")]
+        [Route("/api/animal/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,51 +38,21 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Animal.Where(p => p.nome == nome).Take(1).ToList();
-
-                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
             }
             catch { return BadRequest(); }
         }
 
         [HttpGet]
-        [Route("/api/animal/ListarPet/{idEspecie}")]
+        [Route("/api/animal/especie/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult ListarPorEspecie(int idEspecie)
+        public IActionResult ListarPorEspecie(int id)
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                List<Animal> resultado = db.Animal.Where(p => p.Especie.id_especie > 0).ToList();
-                resultado = resultado.FindAll(p => p.Especie.id_especie == idEspecie);
-
-                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
-                else { return NotFound(); }
-            }
-            catch { return BadRequest(); }
-        }
-
-        [HttpGet]
-        [Route("/api/animal/ListarAnimais")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult ListarTodosAnimais()
-        {
-            try
-            {
-                using var db = new Data.PetStopContext();
-
-                List<Animal> resultado = db.Animal.Where(p => p.id_animal > 0).ToList();
-
-                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Animal.Where(x => x.id_especie == id));
             }
             catch { return BadRequest(); }
         }

@@ -7,7 +7,7 @@ namespace PetStop_API.Controllers
     public class RacaController : Controller
     {
         [HttpGet]
-        [Route("/api/raca/RacasPorEspecie/{id_especie}")]
+        [Route("/api/raca/especie/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -15,12 +15,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Raca.Where(x => x.id_especie == id_especie).ToList();
-
-                if (resultado is not null && resultado.Count > 0) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Raca.Where(x => x.id_especie == id_especie));
             }
             catch { return BadRequest(); }
         }
@@ -34,12 +29,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Raca.FirstOrDefault(x => x.id_raca == id);
-
-                if (resultado != null) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Raca.FirstOrDefault(x => x.id_raca == id) ?? new Models.Raca());
             }
             catch { return BadRequest(); }
         }
@@ -53,12 +43,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-
-                var resultado = db.Raca.FirstOrDefault(x => x.nome == nome);
-
-                if (resultado != null) { return Ok(resultado); }
-                else { return NotFound(); }
+                return Ok(new Data.PetStopContext().Raca.FirstOrDefault(x => x.nome == nome) ?? new Models.Raca());
             }
             catch { return BadRequest(); }
         }

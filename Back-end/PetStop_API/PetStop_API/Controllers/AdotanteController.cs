@@ -28,7 +28,21 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/adotante/BuscarAdotante/{Nome}")]
+        [Route("/api/adotante/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult BuscarAdotante(int id)
+        {
+            try
+            {
+                return Ok(new Data.PetStopContext().Adotante.FirstOrDefault(x => x.id_adotante == id) ?? new Adotante());
+            }
+            catch { return BadRequest(); }
+        }
+
+        [HttpGet]
+        [Route("/api/adotante/{Nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -36,37 +50,25 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                //Implementar busca do adotante
-                using var db = new Data.PetStopContext();
-
-                var adotante = db.Adotante.Where(p => p.nome == Nome).Take(1).ToList();
-
-                if (adotante is not null && adotante.Count > 0)
-                    return Ok(adotante);
-                else
-                    return NotFound();
+                return Ok(new Data.PetStopContext().Adotante.FirstOrDefault(x => x.nome == Nome) ?? new Adotante());
             }
             catch (Exception) { return BadRequest(); }
         }
 
         [HttpDelete]
-        [Route("/api/adotante/ExcluirAdotante/{idAdotante}")]
+        [Route("/api/adotante/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult ExcluirAdotante(int idAdotante)
+        public IActionResult ExcluirAdotante(int id)
         {
             try
             {
                 using var db = new Data.PetStopContext();
-
-                var adotante = db.Adotante.Find(idAdotante);
-
-                if (adotante is not null)
+                var adotante = db.Adotante.FirstOrDefault(x => x.id_adotante == id);
+                if (adotante != null)
                 {
                     db.Adotante.Remove(adotante);
-                    db.SaveChanges();
-
                     return Ok();
                 }
                 else
