@@ -23,8 +23,7 @@ namespace PetStop_API.Controllers
                         db.Adotante.Where(p => p.email == login.email && p.senha == login.senha).Take(1).ToList<dynamic>();
                 if (usuario.Count > 0)
                     return Ok(usuario[0]);
-                else
-                    return Ok(new object());
+                else return Ok(login.tipo == 0 ? new Doador() : new Adotante());
             }
             catch (Exception) { return BadRequest(); }
         }
