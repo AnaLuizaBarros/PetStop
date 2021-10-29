@@ -64,7 +64,15 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                return Ok(new Data.PetStopContext().Doador.FirstOrDefault(x => x.id_doador == id) ?? new Doador());
+                using var db = new Data.PetStopContext();
+                var doador = db.Doador.FirstOrDefault(x => x.id_doador == id);
+                if (doador != null)
+                {
+                    db.Doador.Remove(doador);
+                    return Ok();
+                }
+                else
+                    return NotFound();
             }
             catch { return BadRequest(); }
         }
