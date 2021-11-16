@@ -26,7 +26,7 @@ namespace PetStop_API.Controllers
 
                 return Created("OK", animal);
             }
-            catch (Exception) { return BadRequest(); }
+            catch (Exception e) { return BadRequest(e); }
         }
 
         [HttpGet]
@@ -40,7 +40,7 @@ namespace PetStop_API.Controllers
             {
                 return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
             }
-            catch { return BadRequest(); }
+            catch(Exception e) { return BadRequest(e); }
         }
 
         [HttpGet]
@@ -53,6 +53,38 @@ namespace PetStop_API.Controllers
             try
             {
                 return Ok(new Data.PetStopContext().Animal.Where(x => x.id_especie == id));
+            }
+            catch { return BadRequest(); }
+        }
+
+        [HttpPost]
+        [Route("/api/animal/imagens")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult AdicionarImagem([FromBody] Imagem imagem)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+                db.Set<Imagem>().Add(imagem);
+                db.SaveChanges();
+
+                return Created("OK", imagem);
+            }
+            catch (Exception e) { return BadRequest(e); }
+        }
+
+        [HttpGet]
+        [Route("/api/animal/{id:int}/imagens")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult ListarImagens(int id)
+        {
+            try
+            {
+                return Ok(new Data.PetStopContext().Imagem.Where(x => x.id_animal == id).Select(x => x.imagem));
             }
             catch { return BadRequest(); }
         }

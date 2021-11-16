@@ -12,6 +12,7 @@ namespace PetStop_API.Data.Configuration
             builder.HasOne(x => x.Especie).WithMany(x => x.Animais).HasForeignKey(x => x.id_especie);
             builder.HasOne(x => x.Porte).WithMany(x => x.Animais).HasForeignKey(x => x.id_porte);
             builder.HasOne(x => x.Doador).WithMany(x => x.Animais).HasForeignKey(x => x.id_doador);
+            builder.HasMany(x => x.Imagens).WithOne(x => x.Animal).HasForeignKey(x => x.id_imagem);
         }
     }
 }

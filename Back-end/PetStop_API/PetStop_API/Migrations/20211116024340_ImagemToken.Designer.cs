@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetStop_API.Data;
 
 namespace PetStop_API.Migrations
 {
     [DbContext(typeof(PetStopContext))]
-    partial class PetStopContextModelSnapshot : ModelSnapshot
+    [Migration("20211116024340_ImagemToken")]
+    partial class ImagemToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
