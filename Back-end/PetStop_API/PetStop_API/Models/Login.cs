@@ -14,5 +14,7 @@ namespace PetStop_API.Models
 
         [Required]
         public string senha { get; set; }
+
+        public string token { get; set; }
     }
 }
