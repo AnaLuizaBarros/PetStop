@@ -52,16 +52,6 @@ namespace PetStop_API.Migrations
                 name: "imagem",
                 table: "Animal");
 
-            migrationBuilder.RenameColumn(
-                name: "id_animal",
-                table: "Adocao",
-                newName: "Animalid_animal");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Adocao_id_animal",
-                table: "Adocao",
-                newName: "IX_Adocao_Animalid_animal");
-
             migrationBuilder.AlterColumn<int>(
                 name: "id_especie",
                 table: "Raca",
@@ -143,6 +133,16 @@ namespace PetStop_API.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
+                name: "id_animal",
+                table: "Adocao",
+                type: "int",
+                nullable: false,
+                defaultValue: 0,
+                oldClrType: typeof(int),
+                oldType: "int",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<int>(
                 name: "id_adotante",
                 table: "Adocao",
                 type: "int",
@@ -187,12 +187,12 @@ namespace PetStop_API.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Adocao_Animal_Animalid_animal",
+                name: "FK_Adocao_Animal_id_animal",
                 table: "Adocao",
-                column: "Animalid_animal",
+                column: "id_animal",
                 principalTable: "Animal",
                 principalColumn: "id_animal",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Adocao_Doador_id_doador",
@@ -266,7 +266,7 @@ namespace PetStop_API.Migrations
                 table: "Adocao");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Adocao_Animal_Animalid_animal",
+                name: "FK_Adocao_Animal_id_animal",
                 table: "Adocao");
 
             migrationBuilder.DropForeignKey(
@@ -303,16 +303,6 @@ namespace PetStop_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Imagem");
-
-            migrationBuilder.RenameColumn(
-                name: "Animalid_animal",
-                table: "Adocao",
-                newName: "id_animal");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Adocao_Animalid_animal",
-                table: "Adocao",
-                newName: "IX_Adocao_id_animal");
 
             migrationBuilder.AlterColumn<int>(
                 name: "id_especie",
@@ -379,6 +369,14 @@ namespace PetStop_API.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "id_doador",
+                table: "Adocao",
+                type: "int",
+                nullable: true,
+                oldClrType: typeof(int),
+                oldType: "int");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "id_animal",
                 table: "Adocao",
                 type: "int",
                 nullable: true,

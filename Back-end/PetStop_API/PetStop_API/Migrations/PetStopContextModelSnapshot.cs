@@ -23,13 +23,13 @@ namespace PetStop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("Animalid_animal")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("dataAdocao")
                         .HasColumnType("DATETIME");
 
                     b.Property<int>("id_adotante")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_animal")
                         .HasColumnType("int");
 
                     b.Property<int>("id_doador")
@@ -37,9 +37,9 @@ namespace PetStop_API.Migrations
 
                     b.HasKey("id_adocao");
 
-                    b.HasIndex("Animalid_animal");
-
                     b.HasIndex("id_adotante");
+
+                    b.HasIndex("id_animal");
 
                     b.HasIndex("id_doador");
 
@@ -312,13 +312,15 @@ namespace PetStop_API.Migrations
 
             modelBuilder.Entity("PetStop_API.Models.Adocao", b =>
                 {
-                    b.HasOne("PetStop_API.Models.Animal", "Animal")
-                        .WithMany()
-                        .HasForeignKey("Animalid_animal");
-
                     b.HasOne("PetStop_API.Models.Adotante", "Adotante")
                         .WithMany("Adocoes")
                         .HasForeignKey("id_adotante")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetStop_API.Models.Animal", "Animal")
+                        .WithMany()
+                        .HasForeignKey("id_animal")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
