@@ -1,0 +1,63 @@
+<div class="medium-modal text-center">
+  <div class="modal-header">
+    <a (click)="activeModal.dismiss('Cross click')" aria-label="Close"
+      ><span class="material-icons">close</span></a
+    >
+  </div>
+
+  <div class="modal-body">
+    <img src="../../assets/Logo.svg" />
+    <form [formGroup]="registerPetForm">
+      <label class="me-2 mt-2">Foto: </label>
+      <input
+        formControlName="fotos"
+        (change)="convertImage($event)"
+        type="file"
+      />
+      <br />
+      <label class="mt-3 me-2">Nome: </label>
+      <input formControlName="nome" type="text" />
+      <br />
+      <label class="mt-3 me-2">Especie: </label>
+      <select formControlName="especie">
+        <option *ngFor="let especie of especies" [value]="especie.id_especie">
+          {{ especie.nome }}
+        </option>
+      </select>
+      <br />
+
+      <label class="mt-3">Porte:</label>
+      <input
+        formControlName="porte"
+        class="ms-2"
+        type="radio"
+        id="pequeno"
+        name="porte"
+        value="1"
+      />
+      <label class="ms-1" for="pequeno">Pequeno</label>
+      <input
+        formControlName="porte"
+        class="ms-2"
+        type="radio"
+        id="medio"
+        name="porte"
+        value="2"
+      />
+      <label class="ms-1" for="medio">Médio</label>
+      <input
+        formControlName="porte"
+        class="ms-2"
+        type="radio"
+        id="grande"
+        name="porte"
+        value="3"
+      />
+      <label class="ms-1" for="Grande">Grande</label>
+
+      <button class="mt-4 pet-button primary" (click)="register()">
+        Cadastrar Pet
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 @import "src/theme/theme-variables.scss";
+
 .medium-modal,
 .modal-footer,
 .modal-body {
@@ -18,10 +19,6 @@
     margin-top: 2em;
     text-align: center;
     margin: auto;
-  }
-  .modal__radio {
-    display: inline-flex;
-    text-align: center;
   }
   .modal-footer {
     margin-bottom: 0;

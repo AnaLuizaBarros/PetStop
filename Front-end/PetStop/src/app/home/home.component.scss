@@ -15,3 +15,27 @@ section {
     font-size: 1.875rem;
   }
 }
+.hide-on-desktop {
+  display: none;
+}
+.hide-on-mobile {
+  display: block;
+}
+@media (max-width: $screen-md-min) {
+  .hide-on-mobile {
+    display: none;
+  }
+  .hide-on-desktop {
+    display: block;
+    text-align: center;
+    img {
+      height: 300px;
+    }
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.475rem;
+    }
+  }
+}

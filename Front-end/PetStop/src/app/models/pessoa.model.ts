@@ -9,6 +9,7 @@ export class Pessoa {
   email: string;
   estado: string;
   id_doador: number;
+  id_adotante: number;
   nome: string;
   numero: number;
   rua: string;
@@ -26,6 +27,7 @@ export class Pessoa {
     this.email = (obj && obj.email) || '';
     this.estado = (obj && obj.estado) || '';
     this.id_doador = (obj && obj.id_doador) || 0;
+    this.id_adotante = (obj && obj.id_adotante) || 0;
     this.nome = (obj && obj.nome) || '';
     this.numero = (obj && obj.numero) || 0;
     this.rua = (obj && obj.rua) || '';
