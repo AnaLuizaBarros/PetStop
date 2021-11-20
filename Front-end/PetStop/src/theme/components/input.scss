@@ -1,0 +1,35 @@
+@import "src/theme/theme-variables.scss";
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid $black;
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+}
+input[type="radio"] {
+  width: 35px;
+  height: 20px;
+}
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 21px;
+  height: 22px;
+  margin: -2% auto;
+  border-radius: 50%;
+}
+input[type="radio"]:checked:before {
+  background: $orange2;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border: 1px solid $orange2;
+  color: $black;
+}

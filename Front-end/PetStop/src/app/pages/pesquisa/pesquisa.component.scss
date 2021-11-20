@@ -1,0 +1,20 @@
+@import "src/theme/theme-variables.scss";
+.pesquisa {
+  width: 60%;
+  float: right;
+  margin-top: 10em;
+  button {
+    background: none;
+    border: none;
+    padding: 20px;
+  }
+  img {
+    width: 330px;
+  }
+}
+
+@media (min-width: $screen-xs-min) and (max-width: $screen-md-max) {
+  .pesquisa {
+    width: 80% !important;
+  }
+}

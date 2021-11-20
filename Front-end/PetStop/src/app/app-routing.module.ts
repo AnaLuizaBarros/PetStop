@@ -1,3 +1,4 @@
+import { PagesModule } from './pages/pages.module';
 import { CadastroModule } from './cadastro/cadastro.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,7 +13,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./pages/side-bar/side-bar.module').then((m) => m.SideBarModule),
+      import('./pages/pages.module').then((m) => m.PagesModule),
   },
   {
     path: '**',

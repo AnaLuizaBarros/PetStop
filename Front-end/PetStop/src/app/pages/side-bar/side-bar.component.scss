@@ -3,12 +3,16 @@
   display: flex;
   height: 100%;
   width: 100%;
+  position: fixed;
   .side-bar {
     width: 380px;
     background-color: $white;
+    position: absolute;
+    height: 100%;
+    top: 0;
     .user-avatar,
     .user-buttons {
-      margin-left: 5em;
+      margin-left: 2em;
     }
     .avatars {
       display: inline-flex;
@@ -25,6 +29,40 @@
     }
     .user-name {
       display: block;
+    }
+  }
+  a {
+    color: $black;
+    text-decoration: none;
+  }
+  .close {
+    float: right;
+  }
+}
+.router {
+  // text-align: center;
+  // margin: 10em 5em;
+  width: 100%;
+}
+.desktop {
+  display: none;
+}
+.mobile {
+  display: block;
+}
+@media (max-width: $screen-md-min) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+    text-align: center;
+
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.475rem;
     }
   }
 }

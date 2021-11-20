@@ -1,5 +1,6 @@
 export class Pessoa {
   id_doador: number;
+  id_adotante: number;
   nome: string;
   senha: string;
   email: string;
@@ -26,6 +27,7 @@ export class Pessoa {
     this.email = (obj && obj.email) || '';
     this.estado = (obj && obj.estado) || '';
     this.id_doador = (obj && obj.id_doador) || 0;
+    this.id_adotante = (obj && obj.id_adotante) || 0;
     this.nome = (obj && obj.nome) || '';
     this.numero = (obj && obj.numero) || '';
     this.rua = (obj && obj.rua) || '';

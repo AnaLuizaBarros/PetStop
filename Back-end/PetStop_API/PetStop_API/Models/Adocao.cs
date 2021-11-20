@@ -28,7 +28,6 @@ namespace PetStop_API.Models
         public Adotante Adotante { get; set; }
 
         [Required]
-        [NotMapped]
         public int id_animal { get; set; }
 
         [ForeignKey("id_animal")]

@@ -18,10 +18,10 @@ button:focus {
   padding-left: 2rem;
   padding-right: 2rem;
   transition: all 0.3s ease-in-out;
+  border-radius: 3em;
   &.primary {
     background: $orange2;
     color: $white;
-    border-radius: 3em;
     &:hover {
       background: $orange2;
     }
@@ -36,6 +36,25 @@ button:focus {
   &.secondary {
     background: $white;
     border: 1px solid $black;
-    border-radius: 3em;
+  }
+  &.tertiary {
+    background: $orange3;
+    border: 1px solid $orange3;
+    color: $black;
+    font-weight: 500 !important;
+    width: 95% !important;
+    font-size: 1.3rem !important;
+    display: block !important;
+    &:hover {
+      background: $orange2;
+    }
+  }
+  &.google {
+    background: $gmail;
+    color: $white;
+  }
+  &.face {
+    background: $facebook;
+    color: $white;
   }
 }
