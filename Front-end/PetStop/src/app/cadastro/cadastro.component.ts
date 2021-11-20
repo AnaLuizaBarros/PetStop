@@ -15,38 +15,43 @@ import { CepService } from '../service/cep.service';
 })
 export class CadastroComponent implements OnInit {
   formCadastro!: FormGroup;
-  regexCPF = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
-  regexEmail =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  regexCPF = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
+  regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(
     private formBuilder: FormBuilder,
     private cepsService: CepService
   ) {
-    console.log('oi');
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.createForm(new Pessoa());
     console.log(this.formCadastro.value);
   }
 
   createForm(pessoa: Pessoa) {
-    console.log('createForm');
     console.log(pessoa);
     this.formCadastro = this.formBuilder.group({
-      pessoa_ID: [pessoa.id_doador],
+      id_pessoa: [pessoa.id_doador],
+
       nome: [pessoa.nome],
-      idade: [pessoa.idade],
+      senha: [pessoa.senha],
+      email: [pessoa.email, Validators.pattern(this.regexEmail)],
       cpf: [pessoa.cpf, Validators.pattern(this.regexCPF)],
       telefone: [pessoa.telefone],
-      dt_Nascimento: [pessoa.idade],
-      email: [pessoa.email, Validators.pattern(this.regexEmail)],
+      rua: [pessoa.rua],
+      numero: [pessoa.numero],
+      complemento: [pessoa.complemento],
+      bairro: [pessoa.bairro],
+      cidade: [pessoa.cidade],
+      cep: [pessoa.cep],
+      estado: [pessoa.estado],
+      dataNascimento: [pessoa.dataNascimento],
+
+      idade: [pessoa.idade],
       confirmarEmail: [pessoa.email, Validators.pattern(this.regexEmail)],
-      senha: [pessoa.senha],
-      confirmarSenha: [pessoa.senha],
-      endereco: this.formBuilder.group({
+      confirmarSenha: [pessoa.senha]
+      /* endereco: this.formBuilder.group({
         endereco_ID: [null],
         rua: [null],
         numero: [null],
@@ -56,7 +61,7 @@ export class CadastroComponent implements OnInit {
         cep: [null],
         estado: [null],
         sigla: [null],
-      }),
+      }), */
       /* alergia: this.formBuilder.group({
         alergia_ID: null,
         nome: null,
@@ -75,7 +80,7 @@ export class CadastroComponent implements OnInit {
 
   consultaCEP() {
     const cep = this.formCadastro.get('cep')?.value;
-    if (cep != null && cep !== '') {
+    if (cep != null && cep != '') {
       this.cepsService.buscar(cep).subscribe((dados) => this.populaForm(dados));
     }
   }
@@ -85,7 +90,7 @@ export class CadastroComponent implements OnInit {
       rua: dados.logradouro,
       bairro: dados.bairro,
       cidade: dados.localidade,
-      //estado: dados.uf
+      estado: dados.uf
     });
     //console.log(this.formCadastro.value);
   }

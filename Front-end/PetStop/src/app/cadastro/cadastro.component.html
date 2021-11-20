@@ -1,84 +1,69 @@
-<form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
-  <pre>Cadastro</pre>
+<section>
+  <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+    <!-- <pre>Cadastro</pre> -->
 
-  <div class="row">
-    <div class="form-group">
-      <label for="nome">Nome</label>
-      <input
-        type="text"
-        class="form-control"
-        name="name"
-        id="nome"
-        formControlName="nome"
-      />
-    </div>
-    <div class="form-group">
-      <label for="dt_Nascimento">Data de nascimento</label>
-      <input
-        type="text"
-        class="form-control"
-        name="dt_Nascimento"
-        id="dt_Nascimento"
-        formControlName="dt_Nascimento"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="cpf">CPF</label>
-      <input
-        type="text"
-        class="form-control"
-        name="cpf"
-        id="cpf"
-        formControlName="cpf"
-        mask="000.000.000-00"
-      />
-      <div *ngIf="formCadastro.controls.cpf.errors?.pattern">CPF INVÁLIDO!</div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="email">E-mail</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        id="email"
-        formControlName="email"
-        placeholder="nome@email.com"
-      />
-      <div *ngIf="formCadastro.controls.email.errors?.pattern">
-        EMAIL INVÁLIDO!
+    <!-- <div class="ellipse">  -->   
+    <div class="d-flex" id="nome-div">
+      <div>
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="nome"
+          formControlName="nome"
+        />
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="form-group">
-      <label for="confirmarEmail">Confirmar e-mail</label>
-      <input
-        type="email"
-        class="form-control"
-        name="confirmarEmail"
-        id="confirmarEmail"
-        formControlName="confirmarEmail"
-        placeholder="nome@email.com"
-      />
-      <div *ngIf="formCadastro.controls.email.errors?.pattern">
-        EMAIL INVÁLIDO!
+    <div class="d-flex" id="cpf-div">
+      <div>
+        <label for="cpf">CPF</label>
+        <input
+          type="text"
+          class="form-control"
+          name="cpf"
+          id="cpf"
+          formControlName="cpf"
+          placeholder="000.000.000-00"
+          mask="000.000.000-00"
+        />
+        <div *ngIf="formCadastro.controls.cpf.errors?.pattern">CPF INVÁLIDO!</div>
+      </div>
+      <div id="dataNascimento-div">
+        <label for="dataNascimento">Data de nascimento</label>
+        <input
+          type="text"
+          class="form-control"
+          name="dataNascimento"
+          id="dataNascimento"
+          formControlName="dataNascimento"
+        />
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="row">
-      <div class="form-group">
+    <div class="d-flex" id="email-div">
+      <div>
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          formControlName="email"
+          placeholder="nome@email.com"
+        />
+        <div *ngIf="formCadastro.controls.email.errors?.pattern">
+          EMAIL INVÁLIDO!
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex" id="senha-div">
+      <div>
         <label for="senha">Senha</label>
         <input
-          type="senha"
+          type="password"
           class="form-control"
           name="senha"
           id="senha"
@@ -86,7 +71,141 @@
         />
       </div>
     </div>
-    <div class="row">
+
+    <div class="d-flex" id="telefone-div">
+      <div>
+        <label for="telefone">Telefone</label>
+        <input
+          type="text"
+          class="form-control"
+          name="telefone"
+          id="telefone"
+          formControlName="telefone"
+          placeholder="(00) 00000-0000"
+          mask="(00)00000-0000"
+        />
+      </div>  
+      <div id="cep-div">
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          class="form-control"
+          name="cep"
+          id="cep"
+          formControlName="cep"
+          placeholder="00.000-000"
+          (blur)="consultaCEP()"
+          mask="00.000-000"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex" id="rua-div">
+      <div>
+        <label for="rua">Endereço</label>
+        <input
+          type="text"
+          class="form-control"
+          name="rua"
+          id="rua"
+          formControlName="rua"
+        />
+      </div>
+      <div id="numero-div">
+        <label for="bairro">Número</label>
+        <input
+          type="text"
+          class="form-control"
+          name="numero"
+          id="numero"
+          formControlName="numero"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex" id="bairro-div">
+      <div>
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          class="form-control"
+          name="bairro"
+          id="bairro"
+          formControlName="bairro"
+        />
+      </div>
+      <div id="complemento-div">
+        <label for="complemento">Complemento</label>
+        <input
+          type="text"
+          class="form-control"
+          name="complemento"
+          id="complemento"
+          formControlName="complemento"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex" id="cidade-div">
+      <div>
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          class="form-control"
+          name="cidade"
+          id="cidade"
+          formControlName="cidade"
+        />
+      </div>
+      <div id="estado-div">
+        <label for="estado">Estado</label>
+        <input
+          type="text"
+          class="form-control"
+          name="estado"
+          id="estado"
+          formControlName="estado"
+        />
+      </div>
+    </div>
+
+    <div class="d-flex" id="cancelar-div">
+      <div style="text-align: left;">
+        <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Cancelar</a>
+      </div>
+      <div id="cadastrar-div">
+        <input type="submit" class="pet-button primary me-2" value="Cadastrar" />
+      </div>
+    </div>
+
+    <!-- </div> -->
+  </form>
+  <div id="image">
+    <img src="../../assets/Logo.svg" />
+  </div>
+  
+  <pre> {{ formCadastro.value | json}} </pre>
+
+</section>
+
+    <!-- <div class="row">
+      <div class="form-group">
+        <label for="confirmarEmail">Confirmar e-mail</label>
+        <input
+          type="email"
+          class="form-control"
+          name="confirmarEmail"
+          id="confirmarEmail"
+          formControlName="confirmarEmail"
+          placeholder="nome@email.com"
+        />
+        <div *ngIf="formCadastro.controls.email.errors?.pattern">
+          EMAIL INVÁLIDO!
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <div class="row">
       <div class="form-group">
         <label for="senha">Repita sua senha</label>
         <input
@@ -94,85 +213,7 @@
           class="form-control"
           name="senha"
           id="senha"
-          formControlName="senha"
+          formControlName="confirmarSenha"
         />
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="cep">CEP</label>
-      <input
-        type="text"
-        class="form-control"
-        name="cep"
-        id="cep"
-        formControlName="endereco.cep"
-        (blur)="consultaCEP()"
-        mask="00.000-000"
-      />
-    </div>
-    <div class="form-group">
-      <label for="rua">Endereço</label>
-      <input
-        type="text"
-        class="form-control"
-        name="rua"
-        id="rua"
-        formControlName="endereco.rua"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="bairro">Bairro</label>
-      <input
-        type="text"
-        class="form-control"
-        name="bairro"
-        id="bairro"
-        formControlName="endereco.bairro"
-      />
-    </div>
-    <div class="form-group">
-      <label for="complemento">Complemento</label>
-      <input
-        type="text"
-        class="form-control"
-        name="complemento"
-        id="complemento"
-        formControlName="endereco.complemento"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <label for="cidade">Cidade</label>
-      <input
-        type="text"
-        class="form-control"
-        name="cidade"
-        id="cidade"
-        formControlName="endereco.cidade"
-      />
-    </div>
-    <div class="form-group">
-      <label for="estado">Estado</label>
-      <input
-        type="text"
-        class="form-control"
-        name="estado"
-        id="estado"
-        formControlName="endereco.estado"
-      />
-    </div>
-  </div>
-
-  <input type="submit" class="btn btn-primary mt-4" value="Salvar" />
-  <a href="#" class="btn btn-secondary mt-4 ml-2" (click)="resetar()"
-    >Cancelar</a
-  >
-</form>
+    </div> -->
