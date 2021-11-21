@@ -12,7 +12,7 @@ namespace PetStop_API.Controllers
     public class AnimalController : ControllerBase
     {
         [HttpPost]
-        [Route("/api/animal")]
+        [Route("/api/animal/SalvarAnimal")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CadastrarAnimal([FromBody] Animal animal)
@@ -30,7 +30,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/animal/{nome}")]
+        [Route("/api/animal/BuscarAnimalPorNome/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -44,7 +44,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/animal/especie/{id:int}")]
+        [Route("/api/animal/ListarPorEspecie/especie/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,7 +58,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpPost]
-        [Route("/api/animal/imagens")]
+        [Route("/api/animal/AdicionarImagem/imagens")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -76,7 +76,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/animal/{id:int}/imagens")]
+        [Route("/api/animal/ListarImagens/{id:int}/imagens")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

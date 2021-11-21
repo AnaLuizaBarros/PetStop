@@ -11,6 +11,7 @@ namespace PetStop_API.Controllers
     public class AdotanteController : ControllerBase
     {
         [HttpPost]
+        [Route("/api/adotante/SalvarAdotante/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult PostSalvarAdotante([FromBody] Adotante adotante)
@@ -28,7 +29,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/adotante/{id:int}")]
+        [Route("/api/adotante/BuscarAdotantePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -42,7 +43,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/adotante/{Nome}")]
+        [Route("/api/adotante/BuscarAdotantePorNome/{Nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -56,7 +57,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpDelete]
-        [Route("/api/adotante/{id:int}")]
+        [Route("/api/adotante/ExcluirAdotantePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -78,7 +79,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpPost]
-        [Route("/api/adotante/AdotarAnimal/")]
+        [Route("/api/adoante/AdotarAnimal/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

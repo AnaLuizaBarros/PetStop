@@ -7,7 +7,7 @@ namespace PetStop_API.Controllers
     public class RacaController : Controller
     {
         [HttpGet]
-        [Route("/api/raca/especie/{id:int}")]
+        [Route("/api/raca/BuscarTodasRacasPorEspeciePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -21,7 +21,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/raca/{id:int}")]
+        [Route("/api/raca/BuscarRacaPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -35,7 +35,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/raca/{nome}")]
+        [Route("/api/raca/BuscarEspeciePorNome/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

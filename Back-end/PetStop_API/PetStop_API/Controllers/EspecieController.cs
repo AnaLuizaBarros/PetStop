@@ -9,7 +9,7 @@ namespace PetStop_API.Controllers
     public class EspecieController : Controller
     {
         [HttpGet]
-        [Route("/api/especie")]
+        [Route("/api/especie/BuscarTodasEspecies/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -23,7 +23,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/especie/{id:int}")]
+        [Route("/api/especie/BuscarEspeciePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -37,7 +37,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/especie/{nome}")]
+        [Route("/api/especie/BuscarEspeciePorNome/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

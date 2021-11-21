@@ -11,6 +11,7 @@ namespace PetStop_API.Controllers
     public class DoadorController : ControllerBase
     {
         [HttpPost]
+        [Route("/api/doador/CadastrarDoador/")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CadastrarDoador([FromBody] Doador doador)
@@ -28,7 +29,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/doador/{id:int}")]
+        [Route("/api/doador/BuscarDoadorPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -42,7 +43,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/doador/{Nome}")]
+        [Route("/api/doador/BuscarDoadorPorNome/{Nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -56,7 +57,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/ListarAnimalPorDoador/{id_Doador:int}")]
+        [Route("/api/doador/ListarAnimalPorDoador/{id_Doador:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -78,7 +79,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpDelete]
-        [Route("/api/doador/{id:int}")]
+        [Route("/api/doador/ExcluirDoadorPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

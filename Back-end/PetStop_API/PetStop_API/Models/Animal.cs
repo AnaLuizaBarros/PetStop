@@ -19,13 +19,8 @@ namespace PetStop_API.Models
         [JsonIgnore]
         public Especie Especie { get; set; }
 
-<<<<<<< HEAD
-        //[Column(TypeName = "VARCHAR(255)")]
-        //public byte imagem { get; set; }
-=======
         [JsonIgnore]
         public List<Imagem> Imagens { get; set; }
->>>>>>> 9ff73fe5b706d6431c41fe9e27bb2b2a6185a729
 
         [Required]
         public int id_doador { get; set; }

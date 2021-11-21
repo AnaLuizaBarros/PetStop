@@ -7,7 +7,7 @@ namespace PetStop_API.Controllers
     public class PorteController : Controller
     {
         [HttpGet]
-        [Route("/api/porte")]
+        [Route("/api/porte/BuscarTodasRacasPorEspecie")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -21,7 +21,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/porte/{id:int}")]
+        [Route("/api/porte/BuscarRacaPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -35,7 +35,7 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/porte/{nome}")]
+        [Route("/api/porte/BuscarEspeciePorNome/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
