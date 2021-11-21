@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -18,8 +19,13 @@ namespace PetStop_API.Models
         [JsonIgnore]
         public Especie Especie { get; set; }
 
+<<<<<<< HEAD
         //[Column(TypeName = "VARCHAR(255)")]
         //public byte imagem { get; set; }
+=======
+        [JsonIgnore]
+        public List<Imagem> Imagens { get; set; }
+>>>>>>> 9ff73fe5b706d6431c41fe9e27bb2b2a6185a729
 
         [Required]
         public int id_doador { get; set; }

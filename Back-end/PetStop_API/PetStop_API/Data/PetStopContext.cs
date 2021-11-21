@@ -13,6 +13,7 @@ namespace PetStop_API.Data
         public DbSet<Especie> Especie { get; set; }
         public DbSet<Raca> Raca { get; set; }
         public DbSet<Porte> Porte { get; set; }
+        public DbSet<Imagem> Imagem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

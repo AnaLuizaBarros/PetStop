@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   serverUrl: 'https://petstopapi.herokuapp.com/swagger/index.html',
+  googleClientId:
+    '516284500988-52jvvgaioa3g2apicdn04qtdukvmh6po.apps.googleusercontent.com',
+  fbAppId: '1077041579352087',
 };
 
 /*

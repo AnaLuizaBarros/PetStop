@@ -1,11 +1,12 @@
 <app-nav-bar></app-nav-bar>
 <section>
-  <div>
+  <!-- Desktop -->
+  <div class="hide-on-mobile">
     <h1>petstop</h1>
     <p class="mt-4 mb-4">
       A ponte entre pessoas que querem <br />adotar seu novo amigo e doadores.
       <br />
-      Cadastra-se para encontrar seu <br />
+      Cadastre-se para encontrar seu <br />
       novo parceiro!
     </p>
     <div class="d-flex">
@@ -20,7 +21,29 @@
       </button>
     </div>
   </div>
-  <div>
+  <div class="hide-on-mobile">
     <img src="../../assets/Logo.svg" />
+  </div>
+
+  <!-- Mobile -->
+  <div class="hide-on-desktop">
+    <img src="../../assets/Logo.svg" />
+
+    <h1>petstop</h1>
+    <p class="mt-4 mb-4">
+      A ponte entre pessoas que querem adotar seu novo amigo e doadores.<br />
+      Cadastra-se para encontrar seu novo parceiro!
+    </p>
+    <div class="d-flex justify-content-center">
+      <button
+        (click)="registration('adotante')"
+        class="pet-button primary me-2"
+      >
+        Quero Adotar
+      </button>
+      <button (click)="registration('doador')" class="pet-button secondary">
+        Quero Doar
+      </button>
+    </div>
   </div>
 </section>

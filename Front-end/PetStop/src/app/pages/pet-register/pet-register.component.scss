@@ -1,0 +1,27 @@
+@import "src/theme/theme-variables.scss";
+
+.medium-modal,
+.modal-footer,
+.modal-body {
+  background-color: $background;
+  .modal-header {
+    border: none;
+    justify-content: end;
+  }
+  img {
+    margin-bottom: 2em;
+    width: 200px;
+  }
+  .form__label {
+    display: block;
+  }
+  .pet-button {
+    margin-top: 2em;
+    text-align: center;
+    margin: auto;
+  }
+  .modal-footer {
+    margin-bottom: 0;
+    border: none;
+  }
+}

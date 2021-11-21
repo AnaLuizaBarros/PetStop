@@ -26,13 +26,13 @@ namespace PetStop_API.Migrations
                     b.Property<DateTime>("dataAdocao")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int?>("id_adotante")
+                    b.Property<int>("id_adotante")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_animal")
+                    b.Property<int>("id_animal")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_doador")
+                    b.Property<int>("id_doador")
                         .HasColumnType("int");
 
                     b.HasKey("id_adocao");
@@ -114,7 +114,7 @@ namespace PetStop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_especie")
+                    b.Property<int>("id_especie")
                         .HasColumnType("int");
 
                     b.Property<string>("nome")
@@ -134,10 +134,10 @@ namespace PetStop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_adotante")
+                    b.Property<int>("id_adotante")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_alergia")
+                    b.Property<int>("id_alergia")
                         .HasColumnType("int");
 
                     b.HasKey("id_alergico");
@@ -155,17 +155,14 @@ namespace PetStop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_doador")
+                    b.Property<int>("id_doador")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_especie")
+                    b.Property<int>("id_especie")
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_porte")
+                    b.Property<int>("id_porte")
                         .HasColumnType("int");
-
-                    b.Property<string>("imagem")
-                        .HasColumnType("VARCHAR(255)");
 
                     b.Property<string>("nome")
                         .IsRequired()
@@ -258,6 +255,26 @@ namespace PetStop_API.Migrations
                     b.ToTable("Especie");
                 });
 
+            modelBuilder.Entity("PetStop_API.Models.Imagem", b =>
+                {
+                    b.Property<int>("id_imagem")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_animal")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("imagem")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.HasKey("id_imagem");
+
+                    b.HasIndex("id_animal");
+
+                    b.ToTable("Imagem");
+                });
+
             modelBuilder.Entity("PetStop_API.Models.Porte", b =>
                 {
                     b.Property<int>("id_porte")
@@ -279,7 +296,7 @@ namespace PetStop_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("id_especie")
+                    b.Property<int>("id_especie")
                         .HasColumnType("int");
 
                     b.Property<string>("nome")
@@ -297,15 +314,21 @@ namespace PetStop_API.Migrations
                 {
                     b.HasOne("PetStop_API.Models.Adotante", "Adotante")
                         .WithMany("Adocoes")
-                        .HasForeignKey("id_adotante");
+                        .HasForeignKey("id_adotante")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetStop_API.Models.Animal", "Animal")
                         .WithMany()
-                        .HasForeignKey("id_animal");
+                        .HasForeignKey("id_animal")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetStop_API.Models.Doador", "Doador")
                         .WithMany("Adocoes")
-                        .HasForeignKey("id_doador");
+                        .HasForeignKey("id_doador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Adotante");
 
@@ -318,7 +341,9 @@ namespace PetStop_API.Migrations
                 {
                     b.HasOne("PetStop_API.Models.Especie", "Especie")
                         .WithMany("Alergias")
-                        .HasForeignKey("id_especie");
+                        .HasForeignKey("id_especie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Especie");
                 });
@@ -327,11 +352,15 @@ namespace PetStop_API.Migrations
                 {
                     b.HasOne("PetStop_API.Models.Adotante", "Adotante")
                         .WithMany("Alergias")
-                        .HasForeignKey("id_adotante");
+                        .HasForeignKey("id_adotante")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetStop_API.Models.Alergia", "Alergia")
                         .WithMany("Alergicos")
-                        .HasForeignKey("id_alergia");
+                        .HasForeignKey("id_alergia")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Adotante");
 
@@ -342,15 +371,21 @@ namespace PetStop_API.Migrations
                 {
                     b.HasOne("PetStop_API.Models.Doador", "Doador")
                         .WithMany("Animais")
-                        .HasForeignKey("id_doador");
+                        .HasForeignKey("id_doador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetStop_API.Models.Especie", "Especie")
                         .WithMany("Animais")
-                        .HasForeignKey("id_especie");
+                        .HasForeignKey("id_especie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetStop_API.Models.Porte", "Porte")
                         .WithMany("Animais")
-                        .HasForeignKey("id_porte");
+                        .HasForeignKey("id_porte")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Doador");
 
@@ -359,11 +394,24 @@ namespace PetStop_API.Migrations
                     b.Navigation("Porte");
                 });
 
+            modelBuilder.Entity("PetStop_API.Models.Imagem", b =>
+                {
+                    b.HasOne("PetStop_API.Models.Animal", "Animal")
+                        .WithMany("Imagens")
+                        .HasForeignKey("id_animal")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+                });
+
             modelBuilder.Entity("PetStop_API.Models.Raca", b =>
                 {
                     b.HasOne("PetStop_API.Models.Especie", "Especie")
                         .WithMany("Racas")
-                        .HasForeignKey("id_especie");
+                        .HasForeignKey("id_especie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Especie");
                 });
@@ -378,6 +426,11 @@ namespace PetStop_API.Migrations
             modelBuilder.Entity("PetStop_API.Models.Alergia", b =>
                 {
                     b.Navigation("Alergicos");
+                });
+
+            modelBuilder.Entity("PetStop_API.Models.Animal", b =>
+                {
+                    b.Navigation("Imagens");
                 });
 
             modelBuilder.Entity("PetStop_API.Models.Doador", b =>
