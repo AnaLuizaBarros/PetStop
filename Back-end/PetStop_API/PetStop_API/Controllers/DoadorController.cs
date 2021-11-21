@@ -55,6 +55,28 @@ namespace PetStop_API.Controllers
             catch (Exception) { return BadRequest(); }
         }
 
+        [HttpGet]
+        [Route("/api/ListarAnimalPorDoador/{id_Doador:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult ListarAnimalPorDoador(int id_Doador)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+
+                //Pegando todos os animais que pertencam ao doador passado por parâmetro.
+                var lstAnimais = db.Animal.Where(p => p.id_doador.Equals(id_Doador)).ToList();
+
+                if (lstAnimais != null && lstAnimais.Count > 0)
+                    return Ok(lstAnimais);
+                else
+                    return NotFound("Não foi encontrado nenhum animal vinculado a este doador.");
+            }
+            catch (Exception) { return NotFound(); }
+        }
+
         [HttpDelete]
         [Route("/api/doador/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
