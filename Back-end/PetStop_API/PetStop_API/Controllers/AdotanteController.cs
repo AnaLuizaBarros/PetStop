@@ -28,6 +28,24 @@ namespace PetStop_API.Controllers
             catch (Exception) { return BadRequest(); }
         }
 
+        [HttpPut]
+        [Route("/api/adotante/EditarAdotante/")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult EditarAdotante([FromBody] Adotante adotante)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+
+                db.Set<Adotante>().Update(adotante);
+                db.SaveChanges();
+
+                return Created("OK", adotante);
+            }
+            catch (Exception) { return BadRequest(); }
+        }
+
         [HttpGet]
         [Route("/api/adotante/BuscarAdotantePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

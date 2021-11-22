@@ -7,11 +7,11 @@ namespace PetStop_API.Controllers
     public class PorteController : Controller
     {
         [HttpGet]
-        [Route("/api/porte/BuscarTodasRacasPorEspecie")]
+        [Route("/api/porte/BuscarTodosPortes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult BuscarTodasRacasPorEspecie()
+        public IActionResult BuscarTodosPortes()
         {
             try
             {
@@ -21,11 +21,11 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/porte/BuscarRacaPorId/{id:int}")]
+        [Route("/api/porte/BuscarPortePorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult BuscarRaca(int id)
+        public IActionResult BuscarPortePorId(int id)
         {
             try
             {
@@ -35,11 +35,11 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
-        [Route("/api/porte/BuscarEspeciePorNome/{nome}")]
+        [Route("/api/porte/BuscarPortePorNome/{nome}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult BuscarEspecie(string nome)
+        public IActionResult BuscarPortePorNome(string nome)
         {
             try
             {

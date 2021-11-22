@@ -7,7 +7,7 @@ namespace PetStop_API.Controllers
     public class RacaController : Controller
     {
         [HttpGet]
-        [Route("/api/raca/BuscarTodasRacasPorEspeciePorId/{id:int}")]
+        [Route("/api/raca/BuscarTodasRacasPorEspeciePorId/{id_especie:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

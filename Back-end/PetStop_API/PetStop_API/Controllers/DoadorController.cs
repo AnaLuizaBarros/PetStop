@@ -28,6 +28,24 @@ namespace PetStop_API.Controllers
             catch (Exception) { return BadRequest(); }
         }
 
+        [HttpPut]
+        [Route("/api/doador/EditarDoador/")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult EditarDoador([FromBody] Doador doador)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+
+                db.Set<Doador>().Update(doador);
+                db.SaveChanges();
+
+                return Created("OK", doador);
+            }
+            catch (Exception) { return BadRequest(); }
+        }
+
         [HttpGet]
         [Route("/api/doador/BuscarDoadorPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
