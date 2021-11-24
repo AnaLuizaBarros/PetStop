@@ -56,9 +56,9 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-                
-                return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
+                var animal = new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal();
+                animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
+                return Ok(animal);
             }
             catch(Exception e) { return BadRequest(e); }
         }
@@ -72,7 +72,10 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                return Ok(new Data.PetStopContext().Animal.Where(x => x.Raca.id_especie == id));
+                var animais = new Data.PetStopContext().Animal.Where(x => x.Raca.id_especie == id);
+                foreach(Animal animal in animais)
+                    animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
+                return Ok(animais);
             }
             catch { return BadRequest(); }
         }
@@ -86,9 +89,9 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
-                
-                return Ok(new Data.PetStopContext().Animal.Where(x => x.id_animal == id));
+                var animal = new Data.PetStopContext().Animal.FirstOrDefault(x => x.id_animal == id) ?? new Animal();
+                animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == id).ToList();
+                return Ok(animal);
             }
             catch { return BadRequest(); }
         }
