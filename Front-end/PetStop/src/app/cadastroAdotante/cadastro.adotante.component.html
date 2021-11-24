@@ -33,12 +33,18 @@
       <div id="dataNascimento-div">
         <label for="dataNascimento">Data de nascimento</label>
         <input
-          type="text"
+          type="date"
           class="form-control"
           name="dataNascimento"
           id="dataNascimento"
           formControlName="dataNascimento"
         />
+        <!-- <mat-form-field>
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput [matDatepicker]="picker" name="dataNascimento" formControlName="dataNascimento">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
       </div>
     </div>
 
@@ -171,7 +177,10 @@
 
     <div class="d-flex" id="cancelar-div">
       <div style="text-align: left;">
-        <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Cancelar</a>
+        <a href="#" class="pet-button secondary" (click)="homeReturn()" style="color: gray; text-decoration: none">Voltar</a>
+      </div>
+      <div>
+        <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Limpar</a>
       </div>
       <div id="cadastrar-div">
         <input type="submit" class="pet-button primary me-2" value="Cadastrar" />

@@ -5,35 +5,56 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Pessoa } from '../models/pessoa.model';
+import { CadastroService } from '../service/cadastro.service';
 import { CepService } from '../service/cep.service';
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.scss'],
+  templateUrl: './cadastro.doador.component.html',
+  styleUrls: ['./cadastro.doador.component.scss']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroDoadorComponent implements OnInit {
   formCadastro!: FormGroup;
   regexCPF = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
   regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  option: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private cepsService: CepService
+    private cadastroService: CadastroService,
+    private cepsService: CepService,
+    private router: Router, 
   ) {
   }
 
   ngOnInit() {
-    this.createForm(new Pessoa());
+    this.createFormDoador(new Pessoa());
     console.log(this.formCadastro.value);
   }
 
-  createForm(pessoa: Pessoa) {
+  /* getOption(opcao) {
+    console.log(opcao);
+    this.option = opcao;
+  }
+
+  createForm() {
+    if (this.option == 'adotante') {
+      console.log(this.option);
+      this.createFormAdotante(new Pessoa());
+    }
+    if (this.option == 'doador') {
+      console.log(this.option);
+      this.createFormDoador(new Pessoa());
+    }   
+  } */
+
+  createFormDoador(pessoa: Pessoa) {
+    console.log('createFormDoador');
     console.log(pessoa);
     this.formCadastro = this.formBuilder.group({
-      id_pessoa: [pessoa.id_doador],
-
+      id_doador: [pessoa.id_doador],
       nome: [pessoa.nome],
       senha: [pessoa.senha],
       email: [pessoa.email, Validators.pattern(this.regexEmail)],
@@ -46,36 +67,22 @@ export class CadastroComponent implements OnInit {
       cidade: [pessoa.cidade],
       cep: [pessoa.cep],
       estado: [pessoa.estado],
-      dataNascimento: [pessoa.dataNascimento],
-
-      idade: [pessoa.idade],
-      confirmarEmail: [pessoa.email, Validators.pattern(this.regexEmail)],
-      confirmarSenha: [pessoa.senha]
-      /* endereco: this.formBuilder.group({
-        endereco_ID: [null],
-        rua: [null],
-        numero: [null],
-        complemento: [null],
-        bairro: [null],
-        cidade: [null],
-        cep: [null],
-        estado: [null],
-        sigla: [null],
-      }), */
-      /* alergia: this.formBuilder.group({
-        alergia_ID: null,
-        nome: null,
-      }) */
+      dataNascimento: [pessoa.dataNascimento]
     });
   }
-
+  
   onSubmit() {
     console.log(this.formCadastro.value);
+    this.cadastro();
     this.formCadastro.reset(new Pessoa());
   }
 
   resetar() {
     this.formCadastro.reset();
+  }
+
+  homeReturn() {
+    this.router.navigate(['/cadastro']);
   }
 
   consultaCEP() {
@@ -95,6 +102,17 @@ export class CadastroComponent implements OnInit {
     //console.log(this.formCadastro.value);
   }
 
+  cadastro() {
+    console.log(this.formCadastro.valid);
+    if (this.formCadastro.valid) {
+      console.log(this.formCadastro.value);
+      this.cadastroService
+        .cadastrarDoador(this.formCadastro.value)
+        .pipe()
+        .subscribe((res) => {});
+    }
+  }
+
   /* static equals(otherField: string) {
     const validator = (formControl: FormControl) => {
       if (otherField == null) {
@@ -104,4 +122,24 @@ export class CadastroComponent implements OnInit {
     };
     return validator;
   } */
+
+        /* idade: [pessoa.idade],
+      confirmarEmail: [pessoa.email, Validators.pattern(this.regexEmail)],
+      confirmarSenha: [pessoa.senha]
+      endereco: this.formBuilder.group({
+        endereco_ID: [null],
+        rua: [null],
+        numero: [null],
+        complemento: [null],
+        bairro: [null],
+        cidade: [null],
+        cep: [null],
+        estado: [null],
+        sigla: [null],
+      }),
+      alergia: this.formBuilder.group({
+        alergia_ID: null,
+        nome: null,
+      }) */
+
 }

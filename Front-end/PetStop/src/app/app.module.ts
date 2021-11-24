@@ -1,4 +1,3 @@
-import { CadastroModule } from './cadastro/cadastro.module';
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,21 +11,27 @@ import { AnimalService } from './service/animal.service';
 import { EspecieService } from './service/especie.service';
 import { AlertModule } from '@full-fledged/alerts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { CadastroService } from './service/cadastro.service';
+import { CadastroDoadorModule } from './cadastroDoador/cadastro.doador.module';
+import { CadastroAdotanteModule } from './cadastroAdotante/cadastro.adotante.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatDatepickerModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HomeModule,
-    CadastroModule,
+    CadastroDoadorModule,
+    CadastroAdotanteModule,
     LoginModule,
     SideBarModule,
     NgbModule,
     HttpClientModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000, positionX: 'right' }),
   ],
-  providers: [AnimalService, EspecieService],
+  providers: [AnimalService, EspecieService, CadastroService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
