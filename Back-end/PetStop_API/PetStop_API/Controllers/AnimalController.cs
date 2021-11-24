@@ -57,28 +57,8 @@ namespace PetStop_API.Controllers
             try
             {
                 using var db = new Data.PetStopContext();
-
-                var query = (from p in db.Raca
-                             join e in db.Especie
-                             on p.id_especie equals e.id_especie
-                             join s in db.Animal
-                             on e.id_especie equals s.id_especie
-                             where s.nome == nome
-                             select new
-                             {
-                                 id_animal = s.id_animal,
-                                 nome = s.nome,
-                                 id_especie = e.id_especie,
-                                 imagens = s.Imagens,
-                                 id_doador = s.id_doador,
-                                 id_raca = p.id_raca
-                             }).ToList().Take(1);
-
-                if (query != null && query.Count() > 0)
-                    return Ok(query);
-                else
-                    return NotFound();
-                //return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
+                
+                return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
             }
             catch(Exception e) { return BadRequest(e); }
         }
@@ -92,7 +72,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                return Ok(new Data.PetStopContext().Animal.Where(x => x.id_especie == id));
+                return Ok(new Data.PetStopContext().Animal.Where(x => x.Raca.id_especie == id));
             }
             catch { return BadRequest(); }
         }
@@ -107,29 +87,8 @@ namespace PetStop_API.Controllers
             try
             {
                 using var db = new Data.PetStopContext();
-
-                var query = (from p in db.Raca
-                             join e in db.Especie
-                             on p.id_especie equals e.id_especie
-                             join s in db.Animal
-                             on e.id_especie equals s.id_especie
-                             where s.id_animal == id
-                             select new
-                             {
-                                 id_animal = s.id_animal,
-                                 nome = s.nome,
-                                 id_especie = e.id_especie,
-                                 imagens = s.Imagens,
-                                 id_doador = s.id_doador,
-                                 id_porte = s.id_porte,
-                                 id_raca = p.id_raca
-                             }).ToList().Take(1);
-
-                if (query != null && query.Count() > 0)
-                    return Ok(query);
-                else 
-                    return NotFound();
-                //return Ok(new Data.PetStopContext().Animal.Where(x => x.id_animal == id));
+                
+                return Ok(new Data.PetStopContext().Animal.Where(x => x.id_animal == id));
             }
             catch { return BadRequest(); }
         }
@@ -171,21 +130,21 @@ namespace PetStop_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult FiltrarAnimais(int id_especie = 0, int id_porte = 0)
+        public IActionResult FiltrarAnimais(int id_raca = 0, int id_porte = 0)
         {
             try
             {
+                var db = new Data.PetStopContext();
                 var lstAnimais =
-                    new Data.PetStopContext().Animal.Where(p =>
-                                                            (id_especie == 0 || p.id_especie == id_especie) &&
-                                                            (id_porte == 0 || p.id_porte == id_porte));
-
+                     new Data.PetStopContext().Animal.Where(p =>
+                                                             (id_raca == 0 || p.id_raca == id_raca) &&
+                                                             (id_porte == 0 || p.id_porte == id_porte));
                 if (lstAnimais != null && lstAnimais.Count() > 0)
                     return Ok(lstAnimais);
                 else
                     return NotFound("Não foi encontrado nenhum animal vinculado a este doador.");
             }
-            catch (Exception) { return NotFound(); }
+            catch (Exception e) { return NotFound(e); }
         }
     }
 }

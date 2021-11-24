@@ -18,8 +18,5 @@ namespace PetStop_API.Models
 
         [JsonIgnore]
         public List<Alergia> Alergias { get; set; }
-
-        [JsonIgnore]
-        public List<Animal> Animais { get; set; }
     }
 }

@@ -14,10 +14,10 @@ namespace PetStop_API.Models
         public string nome { get; set; }
 
         [Required]
-        public int id_especie { get; set; }
+        public int id_raca { get; set; }
 
         [JsonIgnore]
-        public Especie Especie { get; set; }
+        public Raca Raca { get; set; }
 
         [Required]
         public List<Imagem> Imagens { get; set; }

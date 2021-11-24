@@ -11,7 +11,6 @@ namespace PetStop_API.Data.Configuration
             builder.HasKey(x => x.id_especie);
             builder.HasMany(x => x.Racas).WithOne(x => x.Especie);
             builder.HasMany(x => x.Alergias).WithOne(x => x.Especie);
-            builder.HasMany(x => x.Animais).WithOne(x => x.Especie);
         }
     }
 }
