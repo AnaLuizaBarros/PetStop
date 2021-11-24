@@ -6,7 +6,7 @@ section {
   padding: 2em;
   img {
     //  width: 240px;
-    height: 405px;
+    height: 450px;
   }
   h1 {
     font-size: 6.5rem;
@@ -216,9 +216,271 @@ section {
 }
 
 #cadastrar-div {
-  padding: 0px 0px 0px 180px;
+  padding: 0px 0px 0px 40px;
+}
+
+#voltar-div {
+  padding: 0px 0px 0px 40px;
 }
 
 #image {
   padding: 250px 0px 0px 0px;
 }
+
+
+/* @import "src/theme/theme-variables.scss";
+
+section {
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
+  img {
+    //  width: 240px;
+    height: 405px;
+  }
+  h1 {
+    font-size: 6.5rem;
+  }
+  p {
+    font-size: 1.875rem;
+  }
+}
+.hide-on-desktop {
+  display: none;
+}
+.hide-on-mobile {
+  display: block;
+}
+
+@media (max-width: $screen-md-min) {
+  .hide-on-mobile {
+    display: none;
+
+    // <--
+
+    #nome {
+      height: 31.013517379760742px;
+      width: 647px;
+      left: 1349px;
+      top: 3943px;
+      border-radius: 31.5px;
+    }
+    
+    #dataNascimento {
+      height: 31.013517379760742px;
+      width: 246.19482421875px;
+      left: 1749.80517578125px;
+      top: 4049.1484375px;
+      border-radius: 31.5px;
+      text-align: left;
+    }
+    
+    #telefone {
+      height: 31.013517379760742px;
+      width: 330px;
+      left: 1349px;
+      top: 4346px;
+      border-radius: 31.5px;  
+    }
+    
+    #cpf {
+      height: 31.013517379760742px;
+      width: 370.1216125488281px;
+      left: 1349.345703125px;
+      top: 4048.1484375px;
+      border-radius: 31.5px;  
+    }
+    
+    #email {
+      height: 31.013517379760742px;
+      width: 646.654296875px;
+      left: 1349.345703125px;
+      top: 4143.35791015625px;
+      border-radius: 31.5px;
+    }
+    
+    #confirmarEmail {
+      position: absolute;
+      width: 370.12px;
+      height: 31.01px;
+    }
+    
+    #senha {
+      height: 31.013517379760742px;
+      width: 646.654296875px;
+      left: 1346px;
+      top: 4243px;
+      border-radius: 31.5px;  
+    }
+    
+    #confirmarSenha {
+      position: absolute;
+      width: 370.12px;
+      height: 31.01px;
+    }
+    
+    #cep {
+      height: 31.013517379760742px;
+      width: 288.20721435546875px;
+      left: 1708px;
+      top: 4346px;
+      border-radius: 31.5px;
+    }
+    
+    #rua {
+      height: 30.668155670166016px;
+      width: 460px;
+      left: 1350px;
+      top: 4448px;
+      border-radius: 31.5px;  
+    }
+    
+    #numero {
+      height: 30.668155670166016px;
+      width: 152px;
+      left: 1844px;
+      top: 4448px;
+      border-radius: 31.5px;
+    }
+    
+    #complemento {
+      height: 30.668155670166016px;
+      width: 246px;
+      left: 1750px;
+      top: 4555px;
+      border-radius: 31.5px;
+    }
+    
+    #bairro {
+      height: 31.013517379760742px;
+      width: 365px;
+      left: 1350.345703125px;
+      top: 4554.77685546875px;
+      border-radius: 31.5px;
+    }
+    
+    #cidade {
+      height: 31.013517379760742px;
+      width: 414.654296875px;
+      left: 1350.345703125px;
+      top: 4654.986328125px;
+      border-radius: 31.5px;
+    }
+    
+    #estado {
+      height: 31.013517379760742px;
+      width: 195.20721435546875px;
+      left: 1801px;
+      top: 4655px;
+      border-radius: 31.5px;  
+    }
+    
+    #cancelar {
+      height: 48px;
+      width: 272px;
+      left: 1349px;
+      top: 4746px;
+      border-radius: 31.5px;
+    }
+    
+    #cadastrar {
+      height: 48px;
+      width: 272px;
+      left: 1723px;
+      top: 4745px;
+      border-radius: 31.5px;
+    }
+    
+    .ellipse {
+      position: absolute;
+      width: 1581px;
+      height: 1712.32px;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    
+    #nome-div {
+      padding: 50px 20px 20px 0px;
+    }
+    
+    #cpf-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #dataNascimento-div {
+      padding: 0px 0px 0px 25px;
+    }
+    
+    #email-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #senha-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #telefone-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #cep-div {
+      padding: 0px 0px 0px 25px;
+    }
+    
+    #rua-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #numero-div {
+      padding: 0px 0px 0px 25px;
+    }
+    
+    #bairro-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #complemento-div {
+      padding: 0px 0px 0px 25px;
+    }
+    
+    #cidade-div {
+      padding: 20px 20px 20px 0px;
+    }
+    
+    #estado-div {
+      padding: 0px 0px 0px 25px;
+    }
+    
+    #cancelar-div {
+      padding: 50px 20px 20px 60px;
+    }
+    
+    #cadastrar-div {
+      padding: 0px 0px 0px 180px;
+    }
+    
+    #image {
+      padding: 250px 0px 0px 0px;
+    }    
+
+    // <--
+
+  }
+  .hide-on-desktop {
+    display: block;
+    text-align: center;
+    img {
+      height: 300px;
+    }
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.475rem;
+    }
+  }
+}
+
+ */
