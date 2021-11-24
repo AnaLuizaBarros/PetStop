@@ -56,7 +56,29 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
+                using var db = new Data.PetStopContext();
+
+                var query = (from p in db.Raca
+                             join e in db.Especie
+                             on p.id_especie equals e.id_especie
+                             join s in db.Animal
+                             on e.id_especie equals s.id_especie
+                             where s.nome == nome
+                             select new
+                             {
+                                 id_animal = s.id_animal,
+                                 nome = s.nome,
+                                 id_especie = e.id_especie,
+                                 imagens = s.Imagens,
+                                 id_doador = s.id_doador,
+                                 id_raca = p.id_raca
+                             }).ToList().Take(1);
+
+                if (query != null && query.Count() > 0)
+                    return Ok(query);
+                else
+                    return NotFound();
+                //return Ok(new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal());
             }
             catch(Exception e) { return BadRequest(e); }
         }
@@ -71,6 +93,43 @@ namespace PetStop_API.Controllers
             try
             {
                 return Ok(new Data.PetStopContext().Animal.Where(x => x.id_especie == id));
+            }
+            catch { return BadRequest(); }
+        }
+
+        [HttpGet]
+        [Route("/api/animal/BuscarPorId/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult BuscarPorId(int id)
+        {
+            try
+            {
+                using var db = new Data.PetStopContext();
+
+                var query = (from p in db.Raca
+                             join e in db.Especie
+                             on p.id_especie equals e.id_especie
+                             join s in db.Animal
+                             on e.id_especie equals s.id_especie
+                             where s.id_animal == id
+                             select new
+                             {
+                                 id_animal = s.id_animal,
+                                 nome = s.nome,
+                                 id_especie = e.id_especie,
+                                 imagens = s.Imagens,
+                                 id_doador = s.id_doador,
+                                 id_porte = s.id_porte,
+                                 id_raca = p.id_raca
+                             }).ToList().Take(1);
+
+                if (query != null && query.Count() > 0)
+                    return Ok(query);
+                else 
+                    return NotFound();
+                //return Ok(new Data.PetStopContext().Animal.Where(x => x.id_animal == id));
             }
             catch { return BadRequest(); }
         }

@@ -19,7 +19,7 @@ namespace PetStop_API.Models
         [JsonIgnore]
         public Especie Especie { get; set; }
 
-        [JsonIgnore]
+        [Required]
         public List<Imagem> Imagens { get; set; }
 
         [Required]
