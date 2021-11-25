@@ -207,6 +207,7 @@ namespace PetStop_API.Controllers
                 if (animal != null)
                 {
                     db.Animal.Remove(animal);
+                    db.SaveChanges();
                     return Ok();
                 }
                 else

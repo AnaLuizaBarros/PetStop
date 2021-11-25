@@ -88,6 +88,7 @@ namespace PetStop_API.Controllers
                 if (adotante != null)
                 {
                     db.Adotante.Remove(adotante);
+                    db.SaveChanges();
                     return Ok();
                 }
                 else

@@ -111,6 +111,7 @@ namespace PetStop_API.Controllers
                 if (doador != null)
                 {
                     db.Doador.Remove(doador);
+                    db.SaveChanges();
                     return Ok();
                 }
                 else
