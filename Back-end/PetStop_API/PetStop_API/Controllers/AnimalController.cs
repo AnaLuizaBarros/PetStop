@@ -180,7 +180,8 @@ namespace PetStop_API.Controllers
                                    a.id_raca,
                                    imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
                                    a.id_doador,
-                                   a.id_porte
+                                   a.id_porte,
+                                   adotado = (from ad in db.Adocao where a.id_animal == ad.id_animal select ad).Any()
                                });
 
                 if (animais != null && animais.Count() > 0)
