@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Md5 } from 'ts-md5';
 import { Pessoa } from '../models/pessoa.model';
 import { CadastroService } from '../service/cadastro.service';
 import { CepService } from '../service/cep.service';
@@ -20,6 +21,7 @@ export class CadastroDoadorComponent implements OnInit {
   regexCPF = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
   regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   option: string;
+  md5 = new Md5();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -73,6 +75,9 @@ export class CadastroDoadorComponent implements OnInit {
   
   onSubmit() {
     console.log(this.formCadastro.value);
+    let hash = this.md5.appendStr(this.formCadastro.controls['senha'].value).end();
+    hash = hash.toString(),
+    this.formCadastro.get('senha')?.setValue(hash);
     this.cadastro();
     this.formCadastro.reset(new Pessoa());
   }
