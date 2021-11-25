@@ -12,13 +12,13 @@ namespace PetStop_API.Util
             Type typeToConvert,
             JsonSerializerOptions options) =>
                 DateTime.ParseExact(reader.GetString(),
-                    "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
         public override void Write(
             Utf8JsonWriter writer,
             DateTime dateTimeValue,
             JsonSerializerOptions options) =>
                 writer.WriteStringValue(dateTimeValue.ToString(
-                    "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                    "yyyy-MM-dd", CultureInfo.InvariantCulture));
     }
 }

@@ -18,14 +18,14 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
+                var db = new Data.PetStopContext();
 
                 db.Set<Adotante>().Add(adotante);
                 db.SaveChanges();
 
                 return Created("OK", adotante);
             }
-            catch (Exception) { return BadRequest(); }
+            catch (Exception e) { return BadRequest(e); }
         }
 
         [HttpPut]
@@ -36,7 +36,7 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
+                var db = new Data.PetStopContext();
 
                 db.Set<Adotante>().Update(adotante);
                 db.SaveChanges();

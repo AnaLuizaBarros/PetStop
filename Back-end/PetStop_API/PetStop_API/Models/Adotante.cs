@@ -61,7 +61,6 @@ namespace PetStop_API.Models
         [Required]
         [Column(TypeName = "DATETIME")]
         [JsonConverter(typeof(DateTimeJsonConverter))]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime dataNascimento { get; set; }
 
         [JsonIgnore]
