@@ -30,7 +30,7 @@ section {
   left: 1749.80517578125px;
   top: 4049.1484375px;
   border-radius: 31.5px;
-  text-align: right;
+  text-align: left;
 }
 
 #telefone {
@@ -216,7 +216,11 @@ section {
 }
 
 #cadastrar-div {
-  padding: 0px 0px 0px 180px;
+  padding: 0px 0px 0px 40px;
+}
+
+#voltar-div {
+  padding: 0px 0px 0px 40px;
 }
 
 #image {

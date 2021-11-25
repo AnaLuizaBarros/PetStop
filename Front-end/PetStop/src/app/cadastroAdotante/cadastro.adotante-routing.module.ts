@@ -1,11 +1,11 @@
-import { CadastroComponent } from './cadastro.component';
+import { CadastroAdotanteComponent } from './cadastro.adotante.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: CadastroComponent,
+    component: CadastroAdotanteComponent,
   },
 ];
 
