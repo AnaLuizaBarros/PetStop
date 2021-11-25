@@ -1,10 +1,197 @@
 <section>
-  <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
-    <!-- <pre>Cadastro</pre> -->
-
-    <!-- <div class="ellipse">  -->   
-    <div class="d-flex" id="nome-div">
+  <div class="hide-on-mobile">
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
       <div>
+        <div id="nome-div">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="nome"
+            formControlName="nome"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="cpf-div">
+        <div>
+          <label for="cpf">CPF</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cpf"
+            id="cpf"
+            formControlName="cpf"
+            placeholder="000.000.000-00"
+            mask="000.000.000-00"
+          />
+          <div *ngIf="formCadastro.controls.cpf.errors?.pattern">CPF INVÁLIDO!</div>
+        </div>
+        <div id="dataNascimento-div">
+          <label for="dataNascimento">Data de nascimento</label>
+          <input
+            type="date"
+            class="form-control"
+            name="dataNascimento"
+            id="dataNascimento"
+            formControlName="dataNascimento"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="email-div">
+        <div>
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            formControlName="email"
+            placeholder="nome@email.com"
+          />
+          <div *ngIf="formCadastro.controls.email.errors?.pattern">
+            EMAIL INVÁLIDO!
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex" id="senha-div">
+        <div>
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            name="senha"
+            id="senha"
+            formControlName="senha"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="telefone-div">
+        <div>
+          <label for="telefone">Telefone</label>
+          <input
+            type="text"
+            class="form-control"
+            name="telefone"
+            id="telefone"
+            formControlName="telefone"
+            placeholder="(00) 00000-0000"
+            mask="(00)00000-0000"
+          />
+        </div>  
+        <div id="cep-div">
+          <label for="cep">CEP</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cep"
+            id="cep"
+            formControlName="cep"
+            placeholder="00.000-000"
+            (blur)="consultaCEP()"
+            mask="00.000-000"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="rua-div">
+        <div>
+          <label for="rua">Endereço</label>
+          <input
+            type="text"
+            class="form-control"
+            name="rua"
+            id="rua"
+            formControlName="rua"
+          />
+        </div>
+        <div id="numero-div">
+          <label for="bairro">Número</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numero"
+            id="numero"
+            formControlName="numero"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="bairro-div">
+        <div>
+          <label for="bairro">Bairro</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bairro"
+            id="bairro"
+            formControlName="bairro"
+          />
+        </div>
+        <div id="complemento-div">
+          <label for="complemento">Complemento</label>
+          <input
+            type="text"
+            class="form-control"
+            name="complemento"
+            id="complemento"
+            formControlName="complemento"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="cidade-div">
+        <div>
+          <label for="cidade">Cidade</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cidade"
+            id="cidade"
+            formControlName="cidade"
+          />
+        </div>
+        <div id="estado-div">
+          <label for="estado">Estado</label>
+          <input
+            type="text"
+            class="form-control"
+            name="estado"
+            id="estado"
+            formControlName="estado"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex" id="cancelar-div">
+        <div style="text-align: left;">
+          <a href="#" class="pet-button secondary" (click)="homeReturn()" style="color: gray; text-decoration: none">Voltar</a>
+        </div>
+        <div id="voltar-div">
+          <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Limpar</a>
+        </div>
+        <div id="cadastrar-div">
+          <input type="submit" class="pet-button primary me-2" value="Cadastrar" />
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <div class="hide-on-mobile" id="image">
+    <img src="../../assets/Logo.svg" />
+  </div>
+
+<!-- ------------------------------------------------------------------------------------------------------ -->
+
+  <div class="hide-on-desktop">
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+
+      <div class="row" id="nome-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; padding-top: 35px !important;">
         <label for="nome">Nome</label>
         <input
           type="text"
@@ -14,12 +201,11 @@
           formControlName="nome"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="cpf-div">
-      <div>
+      <div class="row" id="cpf-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important;">
         <label for="cpf">CPF</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="cpf"
@@ -30,28 +216,23 @@
         />
         <div *ngIf="formCadastro.controls.cpf.errors?.pattern">CPF INVÁLIDO!</div>
       </div>
-      <div id="dataNascimento-div">
+
+      <div class="row" id="dataNascimento-div" style="padding-top: 20px !important; padding-left: 0px !important; width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important;">
         <label for="dataNascimento">Data de nascimento</label>
         <input
+          style="width: 390px !important;"
           type="date"
           class="form-control"
           name="dataNascimento"
           id="dataNascimento"
           formControlName="dataNascimento"
         />
-        <!-- <mat-form-field>
-          <mat-label>Data de nascimento</mat-label>
-          <input matInput [matDatepicker]="picker" name="dataNascimento" formControlName="dataNascimento">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
       </div>
-    </div>
 
-    <div class="d-flex" id="email-div">
-      <div>
+      <div class="row" id="email-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; margin-top: 20px !important; padding-right: 0px !important;">
         <label for="email">E-mail</label>
         <input
+          style="width: 390px !important;"
           type="email"
           class="form-control"
           name="email"
@@ -63,12 +244,11 @@
           EMAIL INVÁLIDO!
         </div>
       </div>
-    </div>
 
-    <div class="d-flex" id="senha-div">
-      <div>
+      <div class="row" id="senha-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important;">
         <label for="senha">Senha</label>
         <input
+          style="width: 390px !important;"
           type="password"
           class="form-control"
           name="senha"
@@ -76,12 +256,11 @@
           formControlName="senha"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="telefone-div">
-      <div>
+      <div class="row" id="telefone-div" style="width: 390px !important; margin-left: 0px !important;text-align: center !important; margin-right: 0px !important; padding-right: 0px !important;">
         <label for="telefone">Telefone</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="telefone"
@@ -90,10 +269,12 @@
           placeholder="(00) 00000-0000"
           mask="(00)00000-0000"
         />
-      </div>  
-      <div id="cep-div">
+      </div>        
+        
+      <div class="row" id="cep-div" style="width: 390px !important; padding-left: 0px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="cep">CEP</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="cep"
@@ -104,12 +285,11 @@
           mask="00.000-000"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="rua-div">
-      <div>
+      <div class="row" id="rua-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="rua">Endereço</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="rua"
@@ -117,9 +297,11 @@
           formControlName="rua"
         />
       </div>
-      <div id="numero-div">
+
+      <div class="row" id="numero-div" style="width: 390px !important; padding-left: 0px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="bairro">Número</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="numero"
@@ -127,12 +309,11 @@
           formControlName="numero"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="bairro-div">
-      <div>
+      <div class="row" id="bairro-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="bairro">Bairro</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="bairro"
@@ -140,9 +321,11 @@
           formControlName="bairro"
         />
       </div>
-      <div id="complemento-div">
+
+      <div class="row" id="complemento-div" style="width: 390px !important; padding-left: 0px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="complemento">Complemento</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="complemento"
@@ -150,12 +333,11 @@
           formControlName="complemento"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="cidade-div">
-      <div>
+      <div class="row" id="cidade-div" style="width: 390px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="cidade">Cidade</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="cidade"
@@ -163,9 +345,11 @@
           formControlName="cidade"
         />
       </div>
-      <div id="estado-div">
+
+      <div class="row" id="estado-div" style="width: 390px !important; padding-left: 0px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-right: 0px !important; margin-top: 20px !important;">
         <label for="estado">Estado</label>
         <input
+          style="width: 390px !important;"
           type="text"
           class="form-control"
           name="estado"
@@ -173,29 +357,32 @@
           formControlName="estado"
         />
       </div>
-    </div>
 
-    <div class="d-flex" id="cancelar-div">
-      <div style="text-align: left;">
-        <a href="#" class="pet-button secondary" (click)="homeReturn()" style="color: gray; text-decoration: none">Voltar</a>
+      <div class="d-flex" id="cancelar-div"style="width: 390px !important; padding-left: 35px !important; margin-left: 0px !important; text-align: center !important; margin-right: 0px !important;">
+        <div style="text-align: left;">
+          <a href="#" class="pet-button secondary" (click)="homeReturn()" style="color: gray; text-decoration: none">Voltar</a>
+        </div>
+        <div id="voltar-div">
+          <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Limpar</a>
+        </div>
       </div>
-      <div id="voltar-div">
-        <a href="#" class="pet-button secondary" (click)="resetar()" style="color: gray; text-decoration: none">Limpar</a>
+      <div class="row" style="margin-left: 0px !important; text-align: center !important; margin-right: 0px !important; padding-left: 70px !important; margin-top: 20px !important;">
+        <div id="cadastrar-div">
+          <input type="submit" class="pet-button primary me-2" value="Cadastrar" />
+        </div>
       </div>
-      <div id="cadastrar-div">
-        <input type="submit" class="pet-button primary me-2" value="Cadastrar" />
-      </div>
-    </div>
 
-    <!-- </div> -->
-  </form>
-  <div id="image">
-    <img src="../../assets/Logo.svg" />
+    </form>
+
+    <div id="image" style="padding-top: 60px !important; padding-bottom: 35px;">
+      <img src="../../assets/Logo.svg" />
+    </div>
   </div>
   
-  <!-- <pre> {{ formCadastro.value | json}} </pre> -->
-
 </section>
+
+
+<!-- <pre> {{ formCadastro.value | json}} </pre> -->
 
     <!-- <div class="row">
       <div class="form-group">

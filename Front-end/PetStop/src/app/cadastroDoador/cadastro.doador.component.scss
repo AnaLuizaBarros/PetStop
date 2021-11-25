@@ -5,8 +5,8 @@ section {
   justify-content: space-around;
   padding: 2em;
   img {
-    //  width: 240px;
-    height: 405px;
+    //width: 285px;
+    height: 450px;
   }
   h1 {
     font-size: 6.5rem;
@@ -14,6 +14,37 @@ section {
   p {
     font-size: 1.875rem;
   }
+
+}
+
+.hide-on-desktop {
+  display: none;
+}
+
+.hide-on-mobile {
+  display: block;
+}
+
+@media (max-width: $screen-md-min) {
+
+  .hide-on-mobile {
+    display: none;    
+  }
+
+  .hide-on-desktop {
+    display: block;
+    text-align: center;
+    img {
+      height: 300px;
+    }
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.475rem;
+    }
+  }
+
 }
 
 #nome {
@@ -30,7 +61,6 @@ section {
   left: 1749.80517578125px;
   top: 4049.1484375px;
   border-radius: 31.5px;
-  text-align: left;
 }
 
 #telefone {
