@@ -56,8 +56,19 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                var animal = new Data.PetStopContext().Animal.FirstOrDefault(x => x.nome == nome) ?? new Animal();
-                animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
+                var db = new Data.PetStopContext();
+
+                var animal = (from a in db.Animal
+                                where a.nome == nome
+                                select new
+                                {
+                                    a.id_animal,
+                                    a.nome,
+                                    a.id_raca,
+                                    imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
+                                    a.id_doador,
+                                    a.id_porte
+                                }).FirstOrDefault();
                 return Ok(animal);
             }
             catch(Exception e) { return BadRequest(e); }
@@ -72,9 +83,19 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                var animais = new Data.PetStopContext().Animal.Where(x => x.Raca.id_especie == id);
-                foreach(Animal animal in animais)
-                    animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
+                var db = new Data.PetStopContext();
+
+                var animais = (from a in db.Animal
+                              where a.Raca.id_especie == id
+                              select new
+                              {
+                                  a.id_animal,
+                                  a.nome,
+                                  a.id_raca,
+                                  imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
+                                  a.id_doador,
+                                  a.id_porte
+                              });
                 return Ok(animais);
             }
             catch { return BadRequest(); }
@@ -89,8 +110,18 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                var animal = new Data.PetStopContext().Animal.FirstOrDefault(x => x.id_animal == id) ?? new Animal();
-                animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == id).ToList();
+                var db = new Data.PetStopContext();
+                var animal = (from a in db.Animal
+                               where a.id_animal == id
+                               select new
+                               {
+                                   a.id_animal,
+                                   a.nome,
+                                   a.id_raca,
+                                   imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
+                                   a.id_doador,
+                                   a.id_porte
+                               }).FirstOrDefault();
                 return Ok(animal);
             }
             catch { return BadRequest(); }
@@ -138,12 +169,22 @@ namespace PetStop_API.Controllers
             try
             {
                 var db = new Data.PetStopContext();
-                var lstAnimais =
-                     new Data.PetStopContext().Animal.Where(p =>
-                                                             (id_raca == 0 || p.id_raca == id_raca) &&
-                                                             (id_porte == 0 || p.id_porte == id_porte));
-                if (lstAnimais != null && lstAnimais.Count() > 0)
-                    return Ok(lstAnimais);
+                var animais = (from a in db.Animal
+                               where 
+                               (id_raca == 0 || a.id_raca == id_raca) &&
+                               (id_porte == 0 || a.id_porte == id_porte)
+                               select new
+                               {
+                                   a.id_animal,
+                                   a.nome,
+                                   a.id_raca,
+                                   imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
+                                   a.id_doador,
+                                   a.id_porte
+                               });
+
+                if (animais != null && animais.Count() > 0)
+                    return Ok(animais);
                 else
                     return NotFound("Não foi encontrado nenhum animal vinculado a este doador.");
             }
