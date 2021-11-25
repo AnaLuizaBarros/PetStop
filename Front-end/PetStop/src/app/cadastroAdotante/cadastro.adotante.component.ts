@@ -67,7 +67,7 @@ export class CadastroAdotanteComponent implements OnInit {
   }
 
   homeReturn() {
-    this.router.navigate(['/#']);
+    this.router.navigate(['/']);
   }
 
   consultaCEP() {

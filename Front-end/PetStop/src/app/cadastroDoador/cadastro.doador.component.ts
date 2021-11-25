@@ -67,7 +67,7 @@ export class CadastroDoadorComponent implements OnInit {
   }
 
   homeReturn() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/']);
   }
 
   consultaCEP() {
