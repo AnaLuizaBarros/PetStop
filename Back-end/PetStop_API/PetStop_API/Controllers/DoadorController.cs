@@ -83,12 +83,21 @@ namespace PetStop_API.Controllers
         {
             try
             {
-                using var db = new Data.PetStopContext();
+                var db = new Data.PetStopContext();
 
-                var animais = new Data.PetStopContext().Animal.Where(p => p.id_doador.Equals(id_Doador));
-                foreach (Animal animal in animais)
-                    animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
-
+                var animais = (from a in db.Animal
+                               where
+                               a.id_doador == id_Doador
+                               select new
+                               {
+                                   a.id_animal,
+                                   a.nome,
+                                   a.id_raca,
+                                   imagens = (from im in db.Imagem where a.id_animal == im.id_animal select im).ToList(),
+                                   a.id_doador,
+                                   a.id_porte,
+                                   adotado = (from ad in db.Adocao where a.id_animal == ad.id_animal select ad).Any()
+                               });
                 if (animais != null && animais.Count() > 0)
                     return Ok(animais);
                 else

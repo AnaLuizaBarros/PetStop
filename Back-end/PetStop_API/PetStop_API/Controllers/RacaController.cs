@@ -21,6 +21,20 @@ namespace PetStop_API.Controllers
         }
 
         [HttpGet]
+        [Route("/api/raca/BuscarTodasRacas")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult BuscarTodasRacas()
+        {
+            try
+            {
+                return Ok(new Data.PetStopContext().Raca.ToList());
+            }
+            catch { return BadRequest(); }
+        }
+
+        [HttpGet]
         [Route("/api/raca/BuscarRacaPorId/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
