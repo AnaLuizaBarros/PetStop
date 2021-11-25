@@ -3,7 +3,7 @@
   width: 60%;
   float: right;
   margin-top: 10em;
-  button {
+  a {
     background: none;
     border: none;
     padding: 20px;
@@ -13,7 +13,7 @@
   }
 }
 
-@media (min-width: $screen-xs-min) and (max-width: $screen-md-max) {
+@media (min-width: $screen-xs-min) and (max-width: $screen-sm-max) {
   .pesquisa {
     width: 80% !important;
   }

@@ -1,0 +1,62 @@
+<div class="medium-modal text-center">
+  <div class="modal-header">
+    <a (click)="activeModal.dismiss('Cross click')" aria-label="Close"
+      ><span class="material-icons">close</span></a
+    >
+  </div>
+
+  <div class="modal-body" *ngIf="!loading">
+    <img src="../../assets/Logo.svg" />
+    <form [formGroup]="editProfileForm">
+      <label class="mt-3 me-2">Nome: </label>
+      <input formControlName="nome" type="text" />
+      <br />
+      <label class="mt-3 me-2">Email: </label>
+      <input formControlName="email" type="text" />
+      <br />
+      <label class="mt-3 me-2">Cpf: </label>
+      <input formControlName="cpf" type="text" />
+      <br />
+      <label class="mt-3 me-2">Telefone: </label>
+      <input formControlName="telefone" type="text" />
+      <br />
+      <label class="mt-3 me-2">Rua: </label>
+      <input formControlName="rua" type="text" />
+      <br />
+      <label class="mt-3 me-2">Número: </label>
+      <input formControlName="numero" type="text" />
+      <br />
+      <label class="mt-3 me-2">Complemento: </label>
+      <input formControlName="complemento" type="text" />
+      <br />
+      <label class="mt-3 me-2">Bairro: </label>
+      <input formControlName="bairro" type="text" />
+      <br />
+      <label class="mt-3 me-2">Cidade: </label>
+      <input formControlName="cidade" type="text" />
+      <br />
+      <label class="mt-3 me-2">Cep: </label>
+      <input formControlName="cep" type="text" />
+      <br />
+      <label class="mt-3 me-2">Estado: </label>
+      <input formControlName="estado" type="text" />
+      <br />
+      <label class="mt-3 me-2">Data de Nascimento: </label>
+      <input
+        formControlName="dataNascimento"
+        type="date"
+        [value]="person.dataNascimento | date: 'dd-MM-yyyy'"
+      />
+      <br />
+
+      <button class="mt-4 pet-button primary" (click)="editProfile()">
+        Editar Cadastro
+      </button>
+    </form>
+  </div>
+  <div class="modal-body" *ngIf="loading">
+    <div class="loading-edit">
+      <app-loading></app-loading>
+    </div>
+  </div>
+</div>

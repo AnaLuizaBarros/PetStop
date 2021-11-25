@@ -3,10 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Login } from '../models/login.model';
-import { BaseResponse } from '../models/baseResponse.model';
-import { Pessoa } from '../models/pessoa.model';
-import { Raca } from '../models/raca.model';
 
 @Injectable()
 export class EspecieService {
@@ -14,7 +10,18 @@ export class EspecieService {
 
   retrieveEspecies(): Observable<Especie[]> {
     return this.http
-      .request<Especie[]>('get', `https://petstopapi.herokuapp.com/api/especie`)
+      .request<Especie[]>(
+        'get',
+        `https://petstopapi.herokuapp.com/api/especie/BuscarTodasEspecies`
+      )
+      .pipe(map((resp) => resp));
+  }
+  retrieveEspecieById(id: number): Observable<Especie> {
+    return this.http
+      .request<Especie>(
+        'get',
+        `https://petstopapi.herokuapp.com/api/especie/BuscarEspeciePorId/${id}`
+      )
       .pipe(map((resp) => resp));
   }
 }

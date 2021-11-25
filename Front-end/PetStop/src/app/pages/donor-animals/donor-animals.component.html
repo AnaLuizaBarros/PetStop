@@ -1,0 +1,41 @@
+<div class="animals-donor row" *ngIf="!loading && donorAnimals.length > 0">
+  <ng-container>
+    <div
+      class="animal text-center col-12 col-md-4"
+      *ngFor="let animais of donorAnimals"
+    >
+      <img
+        *ngIf="animais.imagens.length === 0"
+        src="../../assets/img-placeholder.png"
+      />
+      <img
+        *ngIf="animais.imagens.length > 0"
+        src="{{ 'data:image/jpg;base64,' + animais.imagens[0].imagem }}"
+      />
+      <div class="info d-block d-md-flex justify-content-around mt-3">
+        <span>{{ animais.nome }}</span>
+        <div>
+          <a (click)="petEdit(animais)"
+            ><span class="material-icons"> edit </span></a
+          >
+          <a (click)="deleteAnimal(animais.id_animal, animais.nome)"
+            ><span class="material-icons"> delete </span></a
+          >
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="loading" *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+</div>
+<ng-container *ngIf="!loading && donorAnimals.length == 0">
+  <div class="text-center not-found">
+    <img src="../../assets/Logo.svg" />
+    <h3 class="mt-3">
+      Não a animais a serem exibidos. Cadastre seu animalzinho em
+      <b> "Cadastrar Pet"</b> no menu esquerdo.
+    </h3>
+  </div>
+</ng-container>
