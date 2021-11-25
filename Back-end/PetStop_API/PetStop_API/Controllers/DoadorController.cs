@@ -85,11 +85,12 @@ namespace PetStop_API.Controllers
             {
                 using var db = new Data.PetStopContext();
 
-                //Pegando todos os animais que pertencam ao doador passado por parâmetro.
-                var lstAnimais = db.Animal.Where(p => p.id_doador.Equals(id_Doador)).ToList();
+                var animais = new Data.PetStopContext().Animal.Where(p => p.id_doador.Equals(id_Doador));
+                foreach (Animal animal in animais)
+                    animal.Imagens = new Data.PetStopContext().Imagem.Where(x => x.id_animal == animal.id_animal).ToList();
 
-                if (lstAnimais != null && lstAnimais.Count > 0)
-                    return Ok(lstAnimais);
+                if (animais != null && animais.Count() > 0)
+                    return Ok(animais);
                 else
                     return NotFound("Não foi encontrado nenhum animal vinculado a este doador.");
             }
