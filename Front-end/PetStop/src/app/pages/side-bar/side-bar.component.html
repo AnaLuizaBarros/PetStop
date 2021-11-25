@@ -17,23 +17,37 @@
       </div>
       <div class="ms-4 mt-4">
         <span class="user-name">{{ name }}</span>
-        <span>Editar perfil</span>
+        <a (click)="editProfile()">Editar Perfil</a>
       </div>
     </div>
     <div class="mt-4 user-buttons">
-      <button class="pet-button tertiary mb-4" *ngIf="tipo == 0">
+      <a
+        class="pet-button tertiary mb-4"
+        routerLink="pesquisa"
+        *ngIf="tipo == 1"
+      >
         Procurar Pet
-      </button>
+      </a>
       <button
         class="pet-button tertiary mb-4"
-        *ngIf="tipo == 1"
+        *ngIf="tipo == 0"
         (click)="petRegister()"
       >
         Cadastrar Pet
       </button>
-      <button class="pet-button tertiary mb-4" *ngIf="tipo == 1">
-        Pets Cadastrados
+      <button
+        class="pet-button tertiary mb-4"
+        *ngIf="tipo == 0"
+        routerLink="pets"
+      >
+        Pets Ativos
       </button>
+    </div>
+    <div class="excluir d-flex">
+      <button class="pet-button secondary" (click)="excluirPerfil()">
+        Excluir perfil
+      </button>
+      <a class="pet-button secondary ms-2" (click)="sair()">Sair</a>
     </div>
   </div>
   <!-- Hide on desktop -->
@@ -63,28 +77,40 @@
         </div>
         <div class="ms-4 mt-4">
           <span class="user-name">{{ name }}</span>
-          <span>Editar perfil</span>
+          <a (click)="editProfile()">Editar Perfil</a>
         </div>
       </div>
       <div class="mt-4 user-buttons">
+        <a
+          class="pet-button tertiary mb-4"
+          *ngIf="tipo == 1"
+          (click)="openMobile()"
+          routerLink="pesquisa"
+        >
+          Procurar Pet
+        </a>
         <button
           class="pet-button tertiary mb-4"
           *ngIf="tipo == 0"
-          (click)="petSearch()"
-        >
-          Procurar Pet
-        </button>
-        <button
-          class="pet-button tertiary mb-4"
-          *ngIf="tipo == 1"
           (click)="petRegister()"
         >
           Cadastrar Pet
         </button>
-        <button class="pet-button tertiary mb-4" *ngIf="tipo == 1">
-          Pets Cadastrados
-        </button>
+        <a
+          class="pet-button tertiary mb-4"
+          *ngIf="tipo == 0"
+          (click)="openMobile()"
+          routerLink="pets"
+        >
+          Pets Ativos
+        </a>
       </div>
+    </div>
+    <div class="excluir d-flex" *ngIf="open">
+      <button class="pet-button secondary" (click)="excluirPerfil()">
+        Excluir perfil
+      </button>
+      <button class="pet-button secondary ms-5" (click)="sair()">Sair</button>
     </div>
   </div>
   <div class="router">

@@ -15,6 +15,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CadastroService } from './service/cadastro.service';
 import { CadastroDoadorModule } from './cadastroDoador/cadastro.doador.module';
 import { CadastroAdotanteModule } from './cadastroAdotante/cadastro.adotante.module';
+import { AdotanteService } from './service/adotante.service';
+import { DoadorService } from './service/doador.service';
+import { PorteService } from './service/porte.service';
+import { RacaService } from './service/raca.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,7 +35,15 @@ import { CadastroAdotanteModule } from './cadastroAdotante/cadastro.adotante.mod
     HttpClientModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000, positionX: 'right' }),
   ],
-  providers: [AnimalService, EspecieService, CadastroService],
+  providers: [
+    AnimalService,
+    EspecieService,
+    AdotanteService,
+    DoadorService,
+    RacaService,
+    PorteService,
+    CadastroService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

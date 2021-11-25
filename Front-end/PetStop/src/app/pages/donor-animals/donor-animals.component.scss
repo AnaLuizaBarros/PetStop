@@ -1,0 +1,51 @@
+@import "src/theme/theme-variables.scss";
+.animals-donor {
+  width: 70%;
+  float: right;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 100%;
+  button {
+    background: none;
+    border: none;
+    padding: 20px;
+  }
+
+  .animal {
+    padding: 15px;
+  }
+  a {
+    padding: 5px;
+    text-decoration: none;
+    color: $black;
+  }
+  a:hover {
+    color: $orange2;
+  }
+}
+.not-found {
+  margin-top: 10em;
+  width: 70%;
+  float: right;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+img {
+  width: 240px;
+  height: 240px;
+  border-radius: 10%;
+}
+@media (min-width: $screen-xs-min) and (max-width: $screen-sm-max) {
+  .animals-donor,
+  .not-found {
+    width: 100% !important;
+    // margin-top: 0 !important;
+  }
+}
+@media (min-width: $screen-xs-min) and (max-width: 1400px) {
+  .animals-donor,
+  .not-found {
+    margin-top: 0 !important;
+  }
+}
