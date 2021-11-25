@@ -149,5 +149,29 @@ namespace PetStop_API.Controllers
             }
             catch (Exception e) { return NotFound(e); }
         }
+
+        [HttpDelete]
+        [Route("/api/animal/DeletarAnimal")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult DeletarAnimal(int id_animal)
+        {
+            try
+            {
+                var db = new Data.PetStopContext();
+
+                var animal = db.Animal.FirstOrDefault(x => x.id_animal == id_animal);
+
+                if (animal != null)
+                {
+                    db.Animal.Remove(animal);
+                    return Ok();
+                }
+                else
+                    return BadRequest();
+            }
+            catch (Exception e) { return BadRequest(e); }
+        }
     }
 }
