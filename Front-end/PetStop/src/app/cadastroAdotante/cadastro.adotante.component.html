@@ -186,8 +186,6 @@
     <img src="../../assets/Logo.svg" />
   </div>
 
-<!-- ------------------------------------------------------------------------------------------------------ -->
-
   <div class="hide-on-desktop">
     <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
 
@@ -380,36 +378,3 @@
   </div>
   
 </section>
-
-
-<!-- <pre> {{ formCadastro.value | json}} </pre> -->
-
-    <!-- <div class="row">
-      <div class="form-group">
-        <label for="confirmarEmail">Confirmar e-mail</label>
-        <input
-          type="email"
-          class="form-control"
-          name="confirmarEmail"
-          id="confirmarEmail"
-          formControlName="confirmarEmail"
-          placeholder="nome@email.com"
-        />
-        <div *ngIf="formCadastro.controls.email.errors?.pattern">
-          EMAIL INVÁLIDO!
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="row">
-      <div class="form-group">
-        <label for="senha">Repita sua senha</label>
-        <input
-          type="senha"
-          class="form-control"
-          name="senha"
-          id="senha"
-          formControlName="confirmarSenha"
-        />
-      </div>
-    </div> -->

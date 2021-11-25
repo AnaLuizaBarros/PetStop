@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
     if (type == 'doador') {
       this.router.navigate(['/cadastroDoador']);
     }
-    //this.router.navigate(['/cadastroDoador']);
-    //this.cadastroComponent.getOption(type);
-    //this.cadastroComponent.option = type;
   }
+
 }

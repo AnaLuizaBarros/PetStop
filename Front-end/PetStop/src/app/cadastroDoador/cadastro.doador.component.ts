@@ -33,28 +33,9 @@ export class CadastroDoadorComponent implements OnInit {
 
   ngOnInit() {
     this.createFormDoador(new Pessoa());
-    console.log(this.formCadastro.value);
   }
-
-  /* getOption(opcao) {
-    console.log(opcao);
-    this.option = opcao;
-  }
-
-  createForm() {
-    if (this.option == 'adotante') {
-      console.log(this.option);
-      this.createFormAdotante(new Pessoa());
-    }
-    if (this.option == 'doador') {
-      console.log(this.option);
-      this.createFormDoador(new Pessoa());
-    }   
-  } */
 
   createFormDoador(pessoa: Pessoa) {
-    console.log('createFormDoador');
-    console.log(pessoa);
     this.formCadastro = this.formBuilder.group({
       id_doador: [pessoa.id_doador],
       nome: [pessoa.nome],
@@ -74,7 +55,6 @@ export class CadastroDoadorComponent implements OnInit {
   }
   
   onSubmit() {
-    console.log(this.formCadastro.value);
     let hash = this.md5.appendStr(this.formCadastro.controls['senha'].value).end();
     hash = hash.toString(),
     this.formCadastro.get('senha')?.setValue(hash);
@@ -104,47 +84,15 @@ export class CadastroDoadorComponent implements OnInit {
       cidade: dados.localidade,
       estado: dados.uf
     });
-    //console.log(this.formCadastro.value);
   }
 
   cadastro() {
-    console.log(this.formCadastro.valid);
     if (this.formCadastro.valid) {
-      console.log(this.formCadastro.value);
       this.cadastroService
         .cadastrarDoador(this.formCadastro.value)
         .pipe()
         .subscribe((res) => {});
     }
   }
-
-  /* static equals(otherField: string) {
-    const validator = (formControl: FormControl) => {
-      if (otherField == null) {
-        throw new Error('É necessário informar um campo.')
-      }
-      //const field = formControl.
-    };
-    return validator;
-  } */
-
-        /* idade: [pessoa.idade],
-      confirmarEmail: [pessoa.email, Validators.pattern(this.regexEmail)],
-      confirmarSenha: [pessoa.senha]
-      endereco: this.formBuilder.group({
-        endereco_ID: [null],
-        rua: [null],
-        numero: [null],
-        complemento: [null],
-        bairro: [null],
-        cidade: [null],
-        cep: [null],
-        estado: [null],
-        sigla: [null],
-      }),
-      alergia: this.formBuilder.group({
-        alergia_ID: null,
-        nome: null,
-      }) */
 
 }
