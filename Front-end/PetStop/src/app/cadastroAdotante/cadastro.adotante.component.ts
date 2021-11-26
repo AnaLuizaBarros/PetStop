@@ -3,6 +3,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  RequiredValidator,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,19 +41,19 @@ export class CadastroAdotanteComponent implements OnInit {
   createFormAdotante(pessoa: Pessoa) {
     this.formCadastro = this.formBuilder.group({
       id_adotante: [pessoa.id_adotante],
-      nome: [pessoa.nome],
-      senha: [pessoa.senha],
+      nome: [pessoa.nome, Validators.required],
+      senha: [pessoa.senha, Validators.required],
       email: [pessoa.email, Validators.pattern(this.regexEmail)],
       cpf: [pessoa.cpf, Validators.pattern(this.regexCPF)],
-      telefone: [pessoa.telefone],
-      rua: [pessoa.rua],
+      telefone: [pessoa.telefone, Validators.required],
+      rua: [pessoa.rua, Validators.required],
       numero: [pessoa.numero],
       complemento: [pessoa.complemento],
-      bairro: [pessoa.bairro],
-      cidade: [pessoa.cidade],
-      cep: [pessoa.cep],
-      estado: [pessoa.estado],
-      dataNascimento: [pessoa.dataNascimento]
+      bairro: [pessoa.bairro, Validators.required],
+      cidade: [pessoa.cidade, Validators.required],
+      cep: [pessoa.cep, Validators.required],
+      estado: [pessoa.estado, Validators.required],
+      dataNascimento: [pessoa.dataNascimento, Validators.required]
     });
   }
   
@@ -61,7 +62,6 @@ export class CadastroAdotanteComponent implements OnInit {
     hash = hash.toString(),
     this.formCadastro.get('senha')?.setValue(hash);
     this.cadastro();
-    this.formCadastro.reset(new Pessoa());
   }
 
   resetar() {
@@ -97,6 +97,7 @@ export class CadastroAdotanteComponent implements OnInit {
           console.log(res);
           if (res) {
             this.alertService.success('Cadastro realizado com sucesso!');
+            this.formCadastro.reset(new Pessoa());
           } else {
             this.alertService.danger('Verifique todos os campos e reenvie o formulário.');
           }
