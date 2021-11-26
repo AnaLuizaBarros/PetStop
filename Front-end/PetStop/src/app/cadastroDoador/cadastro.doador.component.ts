@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from '@full-fledged/alerts';
 import { Md5 } from 'ts-md5';
 import { Pessoa } from '../models/pessoa.model';
 import { CadastroService } from '../service/cadastro.service';
@@ -27,7 +28,8 @@ export class CadastroDoadorComponent implements OnInit {
     private formBuilder: FormBuilder,
     private cadastroService: CadastroService,
     private cepsService: CepService,
-    private router: Router, 
+    private router: Router,
+    private alertService: AlertService
   ) {
   }
 
@@ -91,7 +93,20 @@ export class CadastroDoadorComponent implements OnInit {
       this.cadastroService
         .cadastrarDoador(this.formCadastro.value)
         .pipe()
-        .subscribe((res) => {});
+        .subscribe((res) => {
+          console.log(res);
+          if (res) {
+            this.alertService.success('Cadastro realizado com sucesso!');
+          } else {
+            this.alertService.danger('Verifique todos os campos e reenvie o formulário.');
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.alertService.danger('Verifique todos os campos e reenvie o formulário.');
     }
   }
 
