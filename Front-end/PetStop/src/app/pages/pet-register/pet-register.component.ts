@@ -116,6 +116,7 @@ export class PetRegisterComponent implements OnInit {
   }
   getRaca(especie: any, change?: boolean) {
     this.loading = true;
+    especie ? especie : (especie = 0);
     this.racaService
       .retrieveRacaByEspecie(especie.id_especie || especie)
       .pipe()

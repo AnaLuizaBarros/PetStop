@@ -34,21 +34,10 @@
       <input formControlName="email" type="email" />
       <label class="form__label mt-2">Senha</label>
       <input class="mb-2" formControlName="senha" type="password" /><br />
-      <p>Ou use uma rede social</p>
-      <div class="d-flex">
-        <button class="pet-button google" (click)="loginSocial('google')">
-          Google
-        </button>
-        <button class="pet-button face" (click)="loginSocial('facebook')">
-          Facebook
-        </button>
-      </div>
+
       <button class="mt-5 pet-button primary" (click)="login()">
         Fazer Login
       </button>
     </form>
-  </div>
-  <div class="modal-footer">
-    <span>Esqueceu a senha?</span>
   </div>
 </div>

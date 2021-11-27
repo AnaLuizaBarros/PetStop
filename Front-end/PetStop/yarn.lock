@@ -1268,6 +1268,13 @@
   dependencies:
     tslib "^2.1.0"
 
+"@ng-select/ng-select@^8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-8.1.1.tgz#1697d554970b99fc238255709655fb4dd45d1ab1"
+  integrity sha512-CP9Pve3L1aGqej38T9utdd6Waobbybwe9QIEObwicBI5fiIMAXwKT6lFT3fDLTUK/79y5nebiGtwTBfMm71Psg==
+  dependencies:
+    tslib "^2.3.1"
+
 "@ngtools/webpack@12.0.5":
   version "12.0.5"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-12.0.5.tgz#3d858c1df3a4f5a13450fb0cffe0d5db8e61d0e1"
@@ -2039,6 +2046,11 @@ bl@^4.1.0:
     buffer "^5.5.0"
     inherits "^2.0.4"
     readable-stream "^3.4.0"
+
+blob-util@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/blob-util/-/blob-util-2.0.2.tgz#3b4e3c281111bb7f11128518006cdc60b403a1eb"
+  integrity sha512-T7JQa+zsXXEa6/8ZhHcQEW1UFfVM49Ts65uBkFL6fz2QmrElqmbajIDJvuA0tEhRe5eIjpV9ZF+0RfZR9voJFQ==
 
 body-parser@1.19.0, body-parser@^1.19.0:
   version "1.19.0"
@@ -5120,6 +5132,11 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngx-smart-modal@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/ngx-smart-modal/-/ngx-smart-modal-7.4.1.tgz#e4051a61c7469c82170c685033ae681842cd5c78"
+  integrity sha512-1vvqavgJYa06lMAgAniuoaLDCNN4i4M7GzWdSTfndrdtknPUwLlXjmr0uJG7NvgeOnZYICWwx/c/dtgHsMjH/Q==
 
 nice-try@^1.0.4:
   version "1.0.5"

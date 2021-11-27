@@ -19,6 +19,8 @@ import { AdotanteService } from './service/adotante.service';
 import { DoadorService } from './service/doador.service';
 import { PorteService } from './service/porte.service';
 import { RacaService } from './service/raca.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -33,6 +35,7 @@ import { RacaService } from './service/raca.service';
     SideBarModule,
     NgbModule,
     HttpClientModule,
+    NgSelectModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000, positionX: 'right' }),
   ],
   providers: [

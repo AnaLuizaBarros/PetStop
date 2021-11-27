@@ -20,21 +20,17 @@ import { SideBarComponent } from './side-bar.component';
 @NgModule({
   imports: [
     SharedModule,
-    //  BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
     NgbModule,
-    // SideBardRoutingModule,
   ],
   declarations: [
     SideBarComponent,
-    //PetRegisterComponent,
     PesquisaComponent,
     FilterComponent,
     DonorAnimalsComponent,
-    // EditProfileComponent,
   ],
   exports: [SideBarComponent],
   providers: [
